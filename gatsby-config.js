@@ -19,5 +19,13 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
+    {
+     resolve: "gatsby-plugin-web-font-loader",
+     options: {
+       typekit: {
+         id: process.env.TYPEKIT_ID,
+       },
+     },
+   },
   ],
 };
