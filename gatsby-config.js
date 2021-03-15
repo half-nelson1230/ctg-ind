@@ -6,6 +6,11 @@ const myCustomQueries = {
 };
 
 module.exports = {
+  siteMetadata: {
+    title: `Cottage Industry`,
+    siteUrl: `https://ctgindmain.gatsbyjs.io`,
+    description: `Clothes for the Planet`,
+  },
   plugins: [
   //  {
     //  resolve: "gatsby-source-shopify",
