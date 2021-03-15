@@ -8,7 +8,7 @@ const myCustomQueries = {
 module.exports = {
   siteMetadata: {
     title: `Cottage Industry`,
-    siteUrl: `https://ctgindmain.gatsbyjs.io`,
+    siteUrl: `https://git.heroku.com/cottage-industry.git`,
     description: `Clothes for the Planet`,
   },
   plugins: [
