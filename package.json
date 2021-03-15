@@ -17,6 +17,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^1.12.0",
     "gatsby": "^3.0.1",
+    "gatsby-plugin-breakpoints": "^1.3.3",
     "gatsby-plugin-manifest": "^3.0.0",
     "gatsby-plugin-react-helmet": "^4.0.0",
     "gatsby-plugin-sitemap": "^3.0.0",

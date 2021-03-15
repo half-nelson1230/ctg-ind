@@ -12,6 +12,23 @@ const GlobalStyle = createGlobalStyle`
   font-weight: normal;
 }
 
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline-offset: -1px;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  outline-offset: -1px;
+  }
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
 
 :root{
   --Margin: 30px;

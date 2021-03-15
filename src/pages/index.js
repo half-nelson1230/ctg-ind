@@ -23,6 +23,9 @@ display: block;
 
 &.halfImage{
   width: 50%;
+  @media(max-width: 750px){
+    width: 100%;
+  }
 }
 }
 `
@@ -33,10 +36,6 @@ width: 100%;
 display: flex;
 `
 
-
-const Logo = styled.img`
-width: 120px;
-`
 
 // markup
 const IndexPage = () => {
@@ -50,7 +49,7 @@ const IndexPage = () => {
     <img src={secondImage} className={"halfImage"}/>
     <img src={thirdImage} className={"halfImage"}/>
     <Signup/>
-    <Footer/>
+    <Footer abso="yes"/>
     </Container>
   )
 }
