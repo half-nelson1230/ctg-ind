@@ -1,6 +1,7 @@
 import * as React from "react"
 import styled from 'styled-components'
-
+import logoImg from '../../images/Links/logo.svg'
+import logoImgSmall from '../../images/Links/logoSmall.svg'
 import {Link} from 'gatsby'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
 
@@ -87,6 +88,7 @@ const Nav = () =>{
     <Container>
       <Menu>
         <Link to='/'><li>
+        {breakpoints.sm ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
         </li></Link>
         <Link to='/' ><NoLeft className="noLeft">About</NoLeft></Link>
         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
