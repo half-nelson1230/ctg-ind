@@ -12,6 +12,7 @@ import thirdImage from "../images/Links/ctgIndBag.jpg"
 
 import firstAlt from "../images/Links/Seaweed-Fiber-High-Neck-Long-Sleeve-T-Shirt-Off-White-Female-Model-1_1500x.jpg"
 import secondAlt from "../images/Links/122998079_1092137804549215_6067106821591667747_o.jpg"
+import thirdAlt from "../images/Links/testBack.jpg"
 
 //styled components
 const Container = styled.div`
@@ -176,7 +177,7 @@ const ProductPage = () => {
   const products = [
     {title: 'TS_01', classifier: 'Shirt', price: '85.00', mainImage: firstImage, altImage: firstAlt},
     {title: 'SH_01', classifier: 'Shorts', price: '85.00', mainImage: secondImage, altImage: secondAlt},
-    {title: 'ST_01', classifier: 'Stuff Sack', price: '85.00', mainImage: thirdImage, altImage: secondAlt},
+    {title: 'ST_01', classifier: 'Stuff Sack', price: '85.00', mainImage: thirdImage, altImage: thirdAlt}
   ]
 
   const productPics = products.map((item, index) =>
