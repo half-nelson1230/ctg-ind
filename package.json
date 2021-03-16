@@ -1,7 +1,7 @@
 {
   "name": "ctg_ind",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "Ctg_Ind",
   "author": "Al Nelson",
   "keywords": [
