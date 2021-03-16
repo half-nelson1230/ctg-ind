@@ -45,9 +45,9 @@ const IndexPage = () => {
     <NavHold>
     <Nav/>
     </NavHold>
-    <img src={firstImage} className={"bigImage"}/>
-    <img src={secondImage} className={"halfImage"}/>
-    <img src={thirdImage} className={"halfImage"}/>
+    <img src={firstImage} alt="first" className={"bigImage"}/>
+    <img src={secondImage} alt="second" className={"halfImage"}/>
+    <img src={thirdImage} alt="third" className={"halfImage"}/>
     <Signup/>
     <Footer abso="yes"/>
     </Container>

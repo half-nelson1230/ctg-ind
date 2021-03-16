@@ -1,6 +1,5 @@
 import * as React from "react"
 import {useState} from "react"
-import { Link } from "gatsby"
 import GlobalStyle from '../styles/globalStyles.js'
 import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
@@ -136,10 +135,6 @@ const Label=styled.div`
   color: #fff;
   outline-color: #000 !important;
 }
-`
-
-const Blocker = styled.div`
-width: 100%;
 `
 
 const PicLabels = styled.div`
