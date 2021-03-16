@@ -1,5 +1,5 @@
 import * as React from "react"
-import {useState} from "react"
+import { useState } from "react"
 import GlobalStyle from '../styles/globalStyles.js'
 import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
