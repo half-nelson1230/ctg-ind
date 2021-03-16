@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import windsorWoff from '../fonts/windsor.woff'
 import windsorWoff2 from '../fonts/windsor.woff2'
 
