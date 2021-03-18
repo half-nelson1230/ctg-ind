@@ -11,6 +11,7 @@ const Container = styled.div`
 width: 100%;
 display: flex;
 margin: var(--Margin) var(--Margin) 0;
+position: relative;
 `
 
 const Menu = styled.ul`
@@ -62,10 +63,13 @@ max-width: 100%;
 `
 
 const Icons = styled.div`
-margin-left: 28px;
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
 div{
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 100%;
   outline: 2px solid;
   background-color: #fff;
 
@@ -80,12 +84,12 @@ div{
 }
 `
 
-const Nav = () =>{
+const Nav = (props) =>{
   const breakpoints = useBreakpoint();
 
   return(
 
-    <Container>
+    <Container className={props.position}>
       <Menu>
         <Link to='/'><li>
         {breakpoints.sm ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
@@ -95,7 +99,6 @@ const Nav = () =>{
         <Link to='/' ><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
       </Menu>
       <Icons>
-        <div/>
         <div/>
       </Icons>
       </Container>

@@ -6,9 +6,9 @@ import Signup from '../components/layout/popup.js'
 import Footer from '../components/layout/footer.js'
 
 //images
-import firstImage from "../images/Links/snow-peak-fall-winter-2019-lookbook-collection-14.jpg"
-import secondImage from "../images/Links/snow-peak-fall-winter-2019-lookbook-collection-15.jpg"
-import thirdImage from "../images/Links/snow-peak-fall-winter-2019-lookbook-collection-23.jpg"
+import firstImage from "../images/Links/WPD_07.jpg"
+import secondImage from "../images/Links/WPD_09.jpg"
+import thirdImage from "../images/Links/WPD_05.jpg"
 
 //styled components
 const Container = styled.div`

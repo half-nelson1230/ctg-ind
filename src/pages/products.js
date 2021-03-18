@@ -4,15 +4,7 @@ import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
 import Footer from '../components/layout/footer.js'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
-
-//images
-import firstImage from "../images/Links/Kids-Organic-Cotton-T-Shirt-Off-White-1_ce8ec1de-3bda-4094-a9ae-b1f577548602.jpg"
-import secondImage from "../images/Links/Lightweight-Organic-Cotton-Shorts-Off-White-1_900x.jpg"
-import thirdImage from "../images/Links/ctgIndBag.jpg"
-
-import firstAlt from "../images/Links/Seaweed-Fiber-High-Neck-Long-Sleeve-T-Shirt-Off-White-Female-Model-1_1500x.jpg"
-import secondAlt from "../images/Links/122998079_1092137804549215_6067106821591667747_o.jpg"
-import thirdAlt from "../images/Links/testBack.jpg"
+import { graphql, Link } from "gatsby";
 
 //styled components
 const Container = styled.div`
@@ -37,13 +29,22 @@ flex-direction: column;
 justify-content: space-between;
 `
 
-const Main = styled.div`
-width: calc(100% - 72px - var(--Margin)*2);
-
-
+export const Main = styled.div`
+width: calc(100% - var(--Margin)*2);
 display: grid;
 grid-template-columns: repeat(4, 1fr);
 margin: 0 var(--Margin);
+
+a{
+  &.active{
+    div{
+      background-color: #000;
+      color: #fff;
+      outline-color: #000 !important;
+      cursor: pointer;
+    }
+  }
+}
 
 @media(max-width: 1200px){
   grid-template-columns: repeat(1, 1fr);
@@ -89,10 +90,9 @@ position: relative;
 }
 `
 
-const Labels = styled.div`
+export const Labels = styled.div`
 display: flex;
 flex-direction: column;
-justify-content: flex-end;
 
 @media(max-width: 1200px){
   flex-direction: row;
@@ -100,7 +100,7 @@ justify-content: flex-end;
 }
 
 h3{
-  padding: 10px;
+  padding: 0 10px;
   font-family: eurostile-extended, eurostile;
   font-weight: 900;
   font-style: normal;
@@ -114,7 +114,7 @@ p{
 }
 `
 
-const Label=styled.div`
+export const Label=styled.div`
 
   display: flex;
   width: 100%;
@@ -170,51 +170,55 @@ color: #888;
 `
 
 
-const ProductPage = () => {
+const ProductPage = ({ data }) => {
   const [whatIndex, setIndex] = useState(0);
   const breakpoints = useBreakpoint();
 
-  const products = [
-    {title: 'TS_01', classifier: 'Shirt', price: '85.00', mainImage: firstImage, altImage: firstAlt},
-    {title: 'SH_01', classifier: 'Shorts', price: '85.00', mainImage: secondImage, altImage: secondAlt},
-    {title: 'ST_01', classifier: 'Stuff Sack', price: '85.00', mainImage: thirdImage, altImage: thirdAlt}
-  ]
+  const productPics = data.allShopifyProduct.edges.map(({ node }) => {
+    const productPicList = node.images.map(pic => pic.originalSrc)
+      return(
+        <Link to={`/products/${node.handle}`}>
+        <ImageDiv
+        background={productPicList[0]}
+        bgAlt={productPicList[1]}
+        className={whatIndex === node.shopifyId ? 'testLink' : ''}
+        onMouseEnter={() => setIndex(node.shopifyId)}
+        onMouseLeave={() => setIndex(0)}
+      >
+      {breakpoints.md ?
+      <PicLabels>
+        <NameCat>
+        <h3>{node.title}</h3>
+        <p>{node.productType}</p>
+        </NameCat>
+        <Price>${node.priceRange.minVariantPrice.amount}</Price>
+      </PicLabels>
 
-  const productPics = products.map((item, index) =>
-  <ImageDiv
-    background={item.mainImage}
-    bgAlt={item.altImage}
-    className={`${whatIndex !== index + 1 ? '' : 'testLink'}`}
-    onMouseEnter={() => setIndex(index + 1)}
-    onMouseLeave={() => setIndex(0)}
-    value={item.id}
-  >
-  {breakpoints.md ?
-  <PicLabels>
-    <NameCat>
-    <h3>{item.title}</h3>
-    <p>{item.classifier}</p>
-    </NameCat>
-    <Price>${item.price}</Price>
-  </PicLabels>
+      :
 
-  :
+      null
 
-  null
+    }
+        </ImageDiv>
+        </Link>
 
-}
-  </ImageDiv>
+      )
+  }
 )
 
-  const productList = products.map((item, index) =>
+
+  const productList = data.allShopifyProduct.edges.map(({ node }) =>
+  <Link to={`/products/${node.handle}`}>
   <Label
-    className={`${whatIndex !== index + 1 ? '' : 'testLink'}`}
-    onMouseEnter={() => setIndex(index + 1)}
+    key={node.shopifyId}
+    className={whatIndex === node.shopifyId ? 'testLink' : ''}
+    onMouseEnter={() => setIndex(node.shopifyId)}
     onMouseLeave={() => setIndex(0)}
   >
-    <h3>{item.title}</h3>
-    <p>{item.classifier}</p>
+    <h3>{node.title}</h3>
+    <p>{node.productType}</p>
   </Label>
+  </Link>
 )
 
   return(
@@ -238,9 +242,34 @@ const ProductPage = () => {
     </Main>
 
     </Container>
-        <Footer/>
+        <Footer />
     </Parent>
   )
 }
 
 export default ProductPage
+
+export const query = graphql`
+  {
+    allShopifyProduct(sort: { fields: [title] }) {
+      edges {
+        node {
+          title
+          productType
+          images {
+            id
+            originalSrc
+          }
+          shopifyId
+          description
+          handle
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+        }
+      }
+    }
+  }
+`

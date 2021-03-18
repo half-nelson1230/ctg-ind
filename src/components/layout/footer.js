@@ -2,7 +2,7 @@ import * as React from "react"
 import styled from 'styled-components'
 
 const Container = styled.div`
-width: calc(100% - var(--Margin) * 2 - 70px);
+width: ${props => props.full ? '100%' : 'calc(100% - var(--Margin) * 2)'};
 display: flex;
 margin: var(--Margin);
 background-color: #fff;
@@ -10,6 +10,7 @@ background-color: #fff;
 &.yes{
   position: absolute;
   bottom: 0;
+  width: calc(100% - var(--Margin) * 2);
 }
 div{
   outline: 2px solid;
@@ -69,7 +70,8 @@ ul{
 
 const Footer = (props) => {
   return(
-    <Container className={props.abso}>
+    <Container className={props.abso}
+    full={props.full}>
     <Block>
       <h3>Contact</h3>
       <ul>

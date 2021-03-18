@@ -30,6 +30,10 @@ a{
   color: inherit;
 }
 
+body{
+  margin: 0;
+}
+
 :root{
   --Margin: 30px;
 
@@ -46,6 +50,19 @@ html, body, ul{
 ul, li{
   text-decoration: none;
   list-style: none;
+}
+
+.fixed{
+  position: fixed;
+  width: calc(100% - var(--Margin) * 2);
+  z-index: 13;
+}
+
+.noOutline{
+  outline: none;
+  div{
+    outline: none;
+  }
 }
 `
 

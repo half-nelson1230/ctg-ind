@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const myCustomQueries = {
     xs: '(max-width: 320px)',
     sm: '(max-width: 900px)',
@@ -12,13 +14,13 @@ module.exports = {
     description: `Clothes for the Planet`,
   },
   plugins: [
-  //  {
-    //  resolve: "gatsby-source-shopify",
-      //options: {
-        //shopName: "CTG_IND",
-        //accessToken: "",
-    //  },
-  //  },
+   {
+     resolve: "gatsby-source-shopify",
+     options: {
+        shopName: `ctg-ind`,
+        accessToken: `1178bef5337ace8b6210fbeccbc1cdae`,
+      },
+    },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-react-helmet",
     {
