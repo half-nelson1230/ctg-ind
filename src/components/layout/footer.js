@@ -70,7 +70,7 @@ ul{
 
 const Footer = (props) => {
   return(
-    <Container className={props.abso}
+    <Container className='fixfoot'
     full={props.full}>
     <Block>
       <h3>Contact</h3>

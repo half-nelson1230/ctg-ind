@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import GlobalStyle from '../styles/globalStyles.js'
 import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
 import Footer from '../components/layout/footer.js'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
-import { graphql, Link } from "gatsby";
-
+import { useStaticQuery, graphql, Link } from 'gatsby'
+import ContextProvider from '~/provider/contextProvider'
+import ProductLabels from '~/components/layout/productLabels'
+import Layout from '~/components/layout'
 //styled components
 const Container = styled.div`
 display: flex;
 flex-wrap: wrap;
+
 img{
 display: block;
 &.bigImage{
@@ -27,6 +29,7 @@ min-height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
+width: 100%;
 `
 
 export const Main = styled.div`
@@ -35,6 +38,12 @@ display: grid;
 grid-template-columns: repeat(4, 1fr);
 margin: 0 var(--Margin);
 
+@media(max-width: 1200px){
+  grid-template-columns: 120px 1fr 1fr 1fr;
+}
+@media(max-width: 900px){
+  grid-template-columns: repeat(4, 1fr);
+}
 a{
   &.active{
     div{
@@ -46,9 +55,6 @@ a{
   }
 }
 
-@media(max-width: 1200px){
-  grid-template-columns: repeat(1, 1fr);
-}
 @media(max-width: 900px){
   width: 100%;
 }
@@ -60,11 +66,10 @@ grid-column-start: 2;
 grid-column-end: 5;
 grid-template-columns: repeat(3, 1fr);
 
-@media(max-width: 1200px){
-  grid-column-start: 1;
-}
-@media(max-width: 750px){
+
+@media(max-width: 900px){
   grid-template-columns: repeat(2, 1fr);
+  grid-column-start: 1;
 }
 @media(max-width: 500px){
   grid-template-columns: repeat(1, 1fr);
@@ -93,11 +98,6 @@ position: relative;
 export const Labels = styled.div`
 display: flex;
 flex-direction: column;
-
-@media(max-width: 1200px){
-  flex-direction: row;
-
-}
 
 h3{
   padding: 0 10px;
@@ -174,6 +174,10 @@ const ProductPage = ({ data }) => {
   const [whatIndex, setIndex] = useState(0);
   const breakpoints = useBreakpoint();
 
+
+
+
+
   const productPics = data.allShopifyProduct.edges.map(({ node }) => {
     const productPicList = node.images.map(pic => pic.originalSrc)
       return(
@@ -216,18 +220,18 @@ const ProductPage = ({ data }) => {
     onMouseLeave={() => setIndex(0)}
   >
     <h3>{node.title}</h3>
-    <p>{node.productType}</p>
+    {breakpoints.md ? null : <p>{node.productType}</p>}
   </Label>
   </Link>
 )
 
   return(
+    <Layout>
     <Parent>
     <Container>
-    <GlobalStyle/>
-    <Nav/>
+
     <Main>
-      {breakpoints.md ?
+      {breakpoints.sm ?
         null
         :
         <Labels>
@@ -242,8 +246,9 @@ const ProductPage = ({ data }) => {
     </Main>
 
     </Container>
-        <Footer />
+
     </Parent>
+    </Layout>
   )
 }
 

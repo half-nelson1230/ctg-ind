@@ -32,6 +32,28 @@ a{
 
 body{
   margin: 0;
+
+  &.nav-switch {
+    .fixnav{
+      position: fixed;
+      width: calc(100% - var(--Margin) * 2);
+      z-index: 13;
+    }
+  }
+
+  &.nav-switch2 {
+    .fixnav{
+      position: absolute;
+      width: calc(100% - var(--Margin) * 2);
+      z-index: 13;
+    }
+
+    .fixfoot{
+      position: absolute;
+      width: calc(100% - var(--Margin) * 2);
+      bottom: 0;
+    }
+  }
 }
 
 :root{

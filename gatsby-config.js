@@ -1,5 +1,8 @@
-require("dotenv").config()
+const path = require('path')
 
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`
+})
 const myCustomQueries = {
     xs: '(max-width: 320px)',
     sm: '(max-width: 900px)',
@@ -17,8 +20,15 @@ module.exports = {
    {
      resolve: "gatsby-source-shopify",
      options: {
-        shopName: `ctg-ind`,
-        accessToken: `1178bef5337ace8b6210fbeccbc1cdae`,
+        shopName: process.env.SHOP_NAME,
+        accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
+        verbose: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        '~': path.join(__dirname, 'src/'),
       },
     },
     "gatsby-plugin-styled-components",
@@ -41,6 +51,7 @@ module.exports = {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/icon.png",
+        start_url: `/`,
       },
     },
     {

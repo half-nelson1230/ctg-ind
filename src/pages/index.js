@@ -4,11 +4,13 @@ import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
 import Signup from '../components/layout/popup.js'
 import Footer from '../components/layout/footer.js'
-
+import ContextProvider from '~/provider/ContextProvider'
+import Layout from "~/components/layout"
+import Helmet from 'react-helmet'
 //images
-import firstImage from "../images/Links/WPD_07.jpg"
-import secondImage from "../images/Links/WPD_09.jpg"
-import thirdImage from "../images/Links/WPD_05.jpg"
+import firstImage from "~/images/Links/WPD_07.jpg"
+import secondImage from "~/images/Links/WPD_09.jpg"
+import thirdImage from "~/images/Links/WPD_05.jpg"
 
 //styled components
 const Container = styled.div`
@@ -40,17 +42,20 @@ display: flex;
 // markup
 const IndexPage = () => {
   return (
+    <Layout>
+    <Helmet>
+    <body class='nav-switch2' />
+</Helmet>
     <Container>
     <GlobalStyle/>
-    <NavHold>
-    <Nav/>
-    </NavHold>
+
+
     <img src={firstImage} alt="first" className={"bigImage"}/>
     <img src={secondImage} alt="second" className={"halfImage"}/>
     <img src={thirdImage} alt="third" className={"halfImage"}/>
     <Signup/>
-    <Footer abso="yes"/>
     </Container>
+    </Layout>
   )
 }
 

@@ -1,19 +1,18 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import logoImg from '../../images/Links/logo.svg'
-import logoImgSmall from '../../images/Links/logoSmall.svg'
+import logoImg from '~/images/Links/logo.svg'
+import logoImgSmall from '~/images/Links/logoSmall.svg'
 import {Link} from 'gatsby'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
-
-import cartImage from '~/images/Links/cartIcon.png'
-
+import StoreContext from '~/context/StoreContext'
 
 import reduce from 'lodash/reduce'
 import PropTypes from 'prop-types'
-import StoreContext from '~/context/StoreContext'
 import ContextProvider from '~/provider/ContextProvider'
-//styled components
+import LineItem from '~/components/Cart/LineItem'
 
+
+//styled components
 
 const Container = styled.div`
 width: 100%;
@@ -26,12 +25,7 @@ const Menu = styled.ul`
 width: 100%;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-@media(max-width: 1200px ){
-  grid-template-columns: 120px 1fr 1fr 1fr;
-}
-@media(max-width: 900px){
-  grid-template-columns: repeat(4, 1fr);
-}
+
 a{
   height: 100%;
 
@@ -85,33 +79,10 @@ div{
   height: 100%;
   outline: 2px solid;
   background-color: #fff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
+
   @media(max-width: 750px){
-
+    height: 30px;
     width: 30px;
-  }
-
-  img{
-    width: 30px;
-    @media(max-width: 750px){
-      width: 20px;
-    }
-  }
-  span{
-    text-align: center;
-    font-family: eurostile;
-    font-weight: 800;
-    padding: 3px 9px;
-    color: #fff;
-    background-color: #000;
-    top: -16px;
-    right: -12px;
-    border-radius: 20px;
-    position: absolute;
   }
 }
 
@@ -119,37 +90,40 @@ div{
   margin-left: 0;
 }
 `
-const useQuantity = () => {
+
+
+
+const NavMain = (props) =>{
+  const breakpoints = useBreakpoint();
+
+
+
   const {
     store: { checkout },
   } = useContext(StoreContext)
-  const items = checkout ? checkout.lineItems : []
-  const total = reduce(items, (acc, item) => acc + item.quantity, 0)
-  return [total !== 0, total]
-}
 
-const Nav = (props) =>{
-  const breakpoints = useBreakpoint();
-  const [hasItems, quantity] = useQuantity()
 
+  const lineItems = checkout.lineItems.map(item => (
+    <LineItem key={item.id.toString()} item={item} />
+  ))
 
   return(
-
-    <Container className={`fixnav`}>
+    <ContextProvider>
+    <Container className={props.position}>
       <Menu>
         <Link to='/'><li>
-        {breakpoints.md ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
+        {breakpoints.sm ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
         </li></Link>
-        <Link to='/about' ><NoLeft className="noLeft">About</NoLeft></Link>
+        <Link to='/' ><NoLeft className="noLeft">About</NoLeft></Link>
         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
         <Link to='/' ><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
       </Menu>
       <Icons>
-        <div><img src={cartImage}/><span>{quantity}</span></div>
+        <div>{lineItems}</div>
       </Icons>
       </Container>
-
+      </ContextProvider>
   )
 }
 
-export default Nav
+export default NavMain
