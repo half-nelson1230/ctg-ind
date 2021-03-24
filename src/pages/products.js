@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
 import Footer from '../components/layout/footer.js'
-import { useBreakpoint } from 'gatsby-plugin-breakpoints';
+import { useBreakpoint } from 'gatsby-plugin-breakpoints'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import ContextProvider from '~/provider/contextProvider'
 import ProductLabels from '~/components/layout/productLabels'
