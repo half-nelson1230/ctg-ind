@@ -10,7 +10,7 @@ import Helmet from 'react-helmet'
 //images
 import firstImage from "~/images/Links/WPD_07.jpg"
 import secondImage from "~/images/Links/WPD_09.jpg"
-import thirdImage from "~/images/Links/WPD_05.jpg"
+import thirdImage from "~/images/Links/newThird.jpg"
 
 //styled components
 const Container = styled.div`
