@@ -91,7 +91,6 @@ object-position: top;
 
 const About = () => {
   return(
-    <Layout>
 
     <Main>
     <Text>
@@ -111,7 +110,6 @@ const About = () => {
     <AboutImg src={aboutImg}/>
     </Main>
 
-    </Layout>
   )
 }
 

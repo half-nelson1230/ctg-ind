@@ -5,10 +5,10 @@ import Cart from '~/components/Cart/index'
 
 const CartPage = () => (
 
-  <Layout>
+
     <Cart/>
 
-  </Layout>
+
 )
 
 export default CartPage

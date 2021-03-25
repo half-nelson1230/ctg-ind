@@ -7,6 +7,8 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import ContextProvider from '~/provider/ContextProvider'
 import ProductLabels from '~/components/layout/productLabels'
 import Layout from '~/components/layout'
+
+
 //styled components
 const Container = styled.div`
 display: flex;
@@ -25,7 +27,7 @@ display: block;
 `
 
 const Parent = styled.div`
-min-height: 100vh;
+min-height: calc(100vh - 282px);
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -106,6 +108,12 @@ h3{
   font-style: normal;
   font-size: 28px;
   line-height: 18px;
+
+  @media(max-width: 1200px){
+    font-size: 18px;
+    text-align: center;
+    margin: 1em auto;
+  }
 }
 
 p{
@@ -226,7 +234,7 @@ const ProductPage = ({ data }) => {
 )
 
   return(
-    <Layout>
+
     <Parent>
     <Container>
 
@@ -248,7 +256,7 @@ const ProductPage = ({ data }) => {
     </Container>
 
     </Parent>
-    </Layout>
+
   )
 }
 

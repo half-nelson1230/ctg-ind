@@ -128,6 +128,4 @@ const ContextProvider = ({ children }) => {
     </Context.Provider>
   )
 }
-
-
 export default ContextProvider

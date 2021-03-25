@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Nav from '../components/layout/nav.js'
 import Signup from '../components/layout/popup.js'
 import Footer from '../components/layout/footer.js'
-import ContextProvider from '~/provider/ContextProvider'
 import Layout from "~/components/layout"
 import Helmet from 'react-helmet'
 //images
@@ -42,7 +41,7 @@ display: flex;
 // markup
 const IndexPage = () => {
   return (
-    <Layout>
+    <>
     <Helmet>
     <body class='nav-switch2' />
 </Helmet>
@@ -55,7 +54,7 @@ const IndexPage = () => {
     <img src={thirdImage} alt="third" className={"halfImage"}/>
     <Signup/>
     </Container>
-    </Layout>
+    </>
   )
 }
 

@@ -1,14 +1,15 @@
 
 import React, { useContext } from 'react'
-import reduce from 'lodash/reduce'
-import Nav from './layout/nav.js'
-import Footer from './layout/footer.js'
-import GlobalStyle from '../styles/globalStyles.js'
+
+import Nav from '~/components/layout/nav.js'
+import Footer from '~/components/layout/footer.js'
+
+import GlobalStyle from '~/styles/globalStyles.js'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
-import StoreContext from '~/context/StoreContext'
-import ProductLabels from '~/components/layout/productLabels'
+
 import ContextProvider from '~/provider/ContextProvider'
+
 
 import PropTypes from 'prop-types'
 
@@ -37,7 +38,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
     <StaticQuery
         query={graphql`
-          query SiteTitleQuery {
+          query siteTitleQuery {
             site {
               siteMetadata {
                 title

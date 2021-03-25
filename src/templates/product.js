@@ -20,7 +20,7 @@ const ProductTemplate = ({ data }) => {
 
 
   return (
-    <Layout>
+  <>
     <Helmet>
     <body class='nav-switch' />
 </Helmet>
@@ -71,7 +71,7 @@ const ProductTemplate = ({ data }) => {
 
 
       </MainFixed>
-    </Layout>
+  </>
   )
 }
 
