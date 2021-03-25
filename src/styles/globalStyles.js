@@ -57,7 +57,7 @@ body{
 
   &.nav-switch3 {
 
-  
+
   }
 }
 
@@ -89,6 +89,15 @@ ul, li{
   outline: none;
   div{
     outline: none;
+  }
+}
+
+.activeCart{
+  div{
+  background-color: #000;
+  }
+  img{
+  filter: invert(1);
   }
 }
 `

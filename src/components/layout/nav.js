@@ -80,6 +80,14 @@ position: absolute;
 right: 0;
 top: 0;
 bottom: 0;
+:hover{
+  div{
+  background-color: #000;
+  }
+  img{
+  filter: invert(1);
+  }
+}
 div{
   width: 48px;
   height: 100%;
@@ -145,7 +153,7 @@ const Nav = (props) =>{
         <Link to='/' ><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
       </Menu>
       <Icons>
-        <div><img src={cartImage}/><span>{quantity}</span></div>
+        <Link to='/cart' activeClassName="activeCart"><div><img src={cartImage}/><span>{quantity}</span></div></Link>
       </Icons>
       </Container>
 

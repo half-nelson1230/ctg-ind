@@ -105,15 +105,19 @@ const ProductForm = ({ product }) => {
             key={id}
             onBlur={event => handleOptionChange(index, event)}
           >
-            {values.map(value => (
+            {values.map(value => {
+              const disablee = checkDisabled(name, value);
+              console.log(disablee);
+              return(
+
               <option
                 value={value}
                 key={`${name}-${value}`}
                 disabled={checkDisabled(name, value)}
               >
-                {value}
+                {value} {disablee ? ' - out of stock' : ''}
               </option>
-            ))}
+            )})}
           </Select>}
         </React.Fragment>
       ))}

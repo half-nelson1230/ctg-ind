@@ -119,6 +119,12 @@ option{
   font-family: eurostile;
   font-weight: 800;
 }
+
+option:disabled::after{
+
+    content: 'beep';
+
+}
 `
 
 export const Atc = styled.button`
