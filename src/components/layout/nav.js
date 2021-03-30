@@ -22,6 +22,11 @@ margin: var(--Margin) var(--Margin) 0;
 position: relative;
 `
 
+const BreakDiv = styled.div`
+width: 100%;
+`
+
+
 const Menu = styled.ul`
 width: 100%;
 display: grid;
@@ -55,6 +60,17 @@ li{
 }
 `
 
+const Menu2 = styled(Menu)`
+grid-template-columns: repeat(3, 1fr);
+width: 100%;
+`
+
+
+const Menu3 = styled(Menu)`
+width: 100%;
+grid-template-columns: 1fr 48px;
+`
+
 const NoLeft = styled.li`
 
 :hover{
@@ -80,6 +96,10 @@ position: absolute;
 right: 0;
 top: 0;
 bottom: 0;
+
+@media(max-width: 500px){
+  position: relative;
+}
 :hover{
   div{
   background-color: #000;
@@ -101,6 +121,10 @@ div{
   @media(max-width: 750px){
 
     width: 30px;
+  }
+
+  @media(max-width: 500px){
+    width: 48px;
   }
 
   img{
@@ -144,17 +168,42 @@ const Nav = (props) =>{
   return(
 
     <Container className={`fixnav`}>
-      <Menu>
+    {breakpoints.xs ?
+
+      <BreakDiv>
+
+      <Menu3>
         <Link to='/'><li>
-        {breakpoints.md ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
+        <Logo src={logoImg}/>
         </li></Link>
-        <Link to='/about' ><NoLeft className="noLeft">About</NoLeft></Link>
-        <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
-        <Link to='/' ><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
-      </Menu>
-      <Icons>
-        <Link to='/cart' activeClassName="activeCart"><div><img src={cartImage}/><span>{quantity}</span></div></Link>
-      </Icons>
+        <Icons>
+          <Link to='/cart' activeClassName="activeCart"><div><img src={cartImage}/><span>{quantity}</span></div></Link>
+        </Icons>
+      </Menu3>
+
+      <Menu2>
+      <Link to='/about' activeClassName="active"><NoLeft className="noLeft">About</NoLeft></Link>
+      <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
+      <Link to='/process' activeClassName="active"><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
+      </Menu2>
+       </BreakDiv>
+
+       :
+       <>  <Menu>
+         <Link to='/'><li>
+         {breakpoints.md ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
+         </li></Link>
+         <Link to='/about' activeClassName="active"><NoLeft className="noLeft">About</NoLeft></Link>
+         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
+         <Link to='/process' activeClassName="active"><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
+       </Menu>
+       <Icons>
+         <Link to='/cart' activeClassName="activeCart"><div><img src={cartImage}/><span>{quantity}</span></div></Link>
+       </Icons> </>
+
+
+     }
+
       </Container>
 
   )

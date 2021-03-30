@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import Layout from '~/components/layout'
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
+import { RichText } from 'prismic-reactjs';
 
 import aboutImg from '~/images/Links/snow-peak-fall-winter-2019-lookbook-collection-12.jpg'
 
@@ -53,8 +55,34 @@ outline: 2px solid;
 padding: 20px;
 font-family: eurostile;
 
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+max-height: 1000px;
+overflow-y: scroll;
 @media(max-width: 1200px){
   grid-column: span 2;
+  max-height: 500px;
+  overflow-y: scroll;
+
 }
 
 @media(max-width: 500px){
@@ -89,28 +117,46 @@ object-position: top;
 `
 
 
-const About = () => {
+const About = ({ data }) => {
+  const document = data.allPrismicAbout.edges[0].node.data
+
+
   return(
 
     <Main>
     <Text>
-    <h2>About</h2>
-    <p>We believe the clothes we wear should last and be made with quality, but should not outlive our grandchildren degrading in landfills and oceans. There are alternatives to synthetic fabrics and CTG_IND is looking to progress existing and new materials to create functional clothing that treads lightly on our earth. Our clothes are designed to engage with the natural world and perform in various conditions. Starting with re-thinking of garments from the ground up, we hope to develop uncompromisingly sustainable clothing while pushing the boundaries of natural fibers and plant based technologies.
-    </p>
+    <RichText render={document.about.raw}/>
+
     </Text>
     <Text>
-    <h2>Principles</h2>
-    <h3>Local Supply</h3>
-    <p>Work with an increasingly local supply chain to produce our clothing. Starting with cotton grown, spun and sewed in the US, to growing our own algae to produce out screenprinting ink, CTG_IND is on a mission to reduce the distance travelled by the input materials of our products to as close to our production facility as possible. Supporting local economies, reducing the carbon footprint of the end product and creating artifacts that are products of their region.
-    </p>
-    <h3>Natural Materials</h3>
-    <p>Humans have been working with natural fibers since the beginning of clothing. As we moved into more temperate climates and clothes became more important to protect from the cold, these fibers were further developed. In the last 40+ years we have seen synthetic fabrics all but takeover the clothing we make and now we are seeing the downsides to this shift in material. We are not prepared to effectively re-use these materials and create a cyclical stream production stream for these materials. They aren’t designed to be re-used and doing so is still quite inefficient leading to most petroleum products decaying over 100’s - 1000’s of years in landfills and oceans. It seems clear to me that relying on natural fibers and materials that are inherently cyclical is a better alternative. Once your cotton T Shirt has reached the end of its life and it can no longer be repaired
-    </p>
+      <RichText render={document.priorities.raw}/>
     </Text>
     <AboutImg src={aboutImg}/>
     </Main>
 
   )
 }
+
+export const query = graphql`
+query AboutQuery {
+  allPrismicAbout {
+    edges {
+      node {
+        data {
+          about {
+            html
+            raw
+          }
+          priorities {
+            html
+            raw
+          }
+        }
+      }
+    }
+  }
+}
+
+`
 
 export default About

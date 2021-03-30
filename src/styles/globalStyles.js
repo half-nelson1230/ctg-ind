@@ -100,6 +100,20 @@ ul, li{
   filter: invert(1);
   }
 }
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25% /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  position: absolute;
+  outline: 2px solid;
+}
+
+.videxpand{
+  padding-bottom: 56.25%;
+}
 `
 
 export default GlobalStyle

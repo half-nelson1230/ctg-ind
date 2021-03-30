@@ -1,10 +1,11 @@
 const path = require('path')
+const linkResolver = require('./src/templates/utilities/linkResolver')
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`
 })
 const myCustomQueries = {
-    xs: '(max-width: 320px)',
+    xs: '(max-width: 500px)',
     sm: '(max-width: 900px)',
     md: '(max-width: 1200px)',
     l: '(max-width: 1600px)',
@@ -17,6 +18,17 @@ module.exports = {
     description: `Clothes for the Planet`,
   },
   plugins: [
+    {
+     resolve: 'gatsby-source-prismic',
+     options: {
+       repositoryName: 'ctgind',
+       prismicToolbar: true,
+       linkResolver: () => (doc) => linkResolver(doc),
+       schemas: {
+          about: require('./custom_types/about.json'),
+       },
+       },
+     },
    {
      resolve: "gatsby-source-shopify",
      options: {

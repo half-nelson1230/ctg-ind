@@ -5,25 +5,29 @@ import styled from 'styled-components'
 import StoreContext from '~/context/StoreContext'
 
 const Item = styled.div`
-display: flex;
-justify-content: space-between;
+display: grid;
+grid-template-columns: 160px 1fr 160px;
 width: 100%;
 position: relative;
 outline: 2px solid;
 align-items: center;
 
+@media(max-width: 800px){
+  grid-template-columns: 25% 1fr 25%;
+}
+
 img{
   position: relative;
-  width: 25%;
+  width: 100%;
   height: auto;
   outline: 2px solid;
-  max-width: 160px;
+
 }
 a{
   outline: 2px solid;
   align-self: stretch;
-  width: 25%;
-  max-width: 160px;
+  width: 100%;
+
 
 }
 
@@ -38,7 +42,10 @@ p{
   margin: 0;
   font-family: eurostile;
   font-weight: 300;
-  font-size: 24px;
+  font-size: 18px;
+  @media(max-width: 600px){
+    font-size: 16px;
+  }
 }
 `
 
@@ -51,8 +58,7 @@ const BigButton = styled.button`
   font-size: 24px;
   align-self: stretch;
   padding: 30px;
-  width: 25%;
-  max-width: 160px;
+  width: 100%;
   :hover{
     cursor: pointer;
     color: #fff;
@@ -63,12 +69,15 @@ const BigButton = styled.button`
 
 
 const Info = styled.div`
-display: grid;
-grid-template-columns: repeat(4, 1fr);
+display: flex;
 align-items: center;
 justify-content: space-between;
 width: 100%;
 padding: 30px;
+
+@media(max-width: 600px){
+  padding: 15px;
+}
 h4{
   margin: 0;
   font-family: eurostile;
@@ -92,6 +101,12 @@ p{
   margin: 0 10px;
   text-align: center;
   font-size: 24px;
+}
+
+@media(max-width: 600px){
+  p{
+    font-size: 20px;
+  }
 }
 button{
   border: none;
@@ -144,9 +159,10 @@ const LineItem = props => {
         {variantImage}
 
       <Info>
-
+      <div>
       <h3>{item.title}</h3>
       <p>{selectedOptions}</p>
+      </div>
       <Qty>
 
       <p>{item.quantity}</p>

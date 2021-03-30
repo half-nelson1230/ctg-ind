@@ -114,9 +114,9 @@ const NavMain = (props) =>{
         <Link to='/'><li>
         {breakpoints.sm ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
         </li></Link>
-        <Link to='/' ><NoLeft className="noLeft">About</NoLeft></Link>
+        <Link to='/' activeClassName="active"><NoLeft className="noLeft">About</NoLeft></Link>
         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
-        <Link to='/' ><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
+        <Link to='/' activeClassName="active"><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
       </Menu>
       <Icons>
         <div>{lineItems}</div>

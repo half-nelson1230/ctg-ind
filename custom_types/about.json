@@ -1,0 +1,18 @@
+{
+  "Main": {
+    "about": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading2, heading3, hyperlink, list-item",
+        "label": "about"
+      }
+    },
+    "priorities": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, heading2, heading3, hyperlink, list-item",
+        "label": "priorities"
+      }
+    }
+  }
+}

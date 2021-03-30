@@ -46,11 +46,16 @@ const Items = styled.div`
 `
 
 const Price = styled.div`
-display: flex;
+display: grid;
+grid-template-columns: 160px 1fr 160px;
 outline: 2px solid;
-grid-template-columns: repeat(4, 1fr);
-justify-content: space-between;
 width: 100%;
+position: relative;
+
+@media(max-width: 800px){
+  grid-template-columns: 25% 1fr 25%;
+}
+
 
 button{
   outline: 2px solid;
@@ -61,8 +66,9 @@ button{
   font-size: 18px;
   align-self: stretch;
   padding: 30px;
-  width: 25%;
-  max-width: 160px;
+  width: 100%;
+
+  background-color: #1111;
   :hover{
     cursor: pointer;
     color: #fff;
@@ -74,10 +80,10 @@ button{
 
 const Spacer = styled.div`
 position: relative;
-width: 25%;
+width: 100%;
 height: auto;
 outline: 2px solid;
-max-width: 160px;
+
 `
 
 const PriceItems = styled.div`
@@ -86,6 +92,10 @@ width: 100%;
 grid-template-columns: repeat(2, 1fr);
 align-items: center;
 padding: 30px;
+
+@media(max-width: 600px){
+  padding: 15px;
+}
 p{
   margin: 0;
   font-family: eurostile;
