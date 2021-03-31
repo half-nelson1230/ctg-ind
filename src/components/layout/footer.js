@@ -47,6 +47,19 @@ justify-content: space-between;
 
   }
 }
+@media(max-width: 500px){
+  display: flex;
+  padding: 10px;
+  height: auto;
+  justify-content: flex-start;
+  ul{
+    display: flex;
+    li{
+      padding-right: 20px;
+    }
+  }
+
+}
 
 h3, ul{
   width: 100%;

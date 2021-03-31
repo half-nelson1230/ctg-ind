@@ -12,6 +12,7 @@ display: grid;
 grid-template-columns: repeat(4, 1fr);
 margin: 0 var(--Margin);
 margin-bottom: calc(var(--Margin) * -1);
+
 @media(max-width: 1200px){
   grid-template-columns: 120px 1fr 1fr 1fr;
 }
@@ -54,7 +55,7 @@ const Text = styled.div`
 outline: 2px solid;
 padding: 20px;
 font-family: eurostile;
-
+min-height: 100%;
 
 /* width */
 ::-webkit-scrollbar {
@@ -109,9 +110,11 @@ grid-column: span 2;
 outline: 2px solid;
 object-fit: cover;
 object-position: top;
+min-height: 100%;
 @media(max-width: 1200px){
     grid-column: span 4;
     max-height: 600px;
+    min-height: none !important;
 }
 
 `

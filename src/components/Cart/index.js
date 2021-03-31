@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import StoreContext from '~/context/StoreContext'
 import LineItem from './LineItem'
+import { useBreakpoint } from 'gatsby-plugin-breakpoints';
 
 //styled components
 const Container = styled.div`
@@ -56,6 +57,10 @@ position: relative;
   grid-template-columns: 25% 1fr 25%;
 }
 
+@media(max-width: 500px){
+  grid-template-columns: 1fr 33%;
+}
+
 
 button{
   outline: 2px solid;
@@ -69,6 +74,11 @@ button{
   width: 100%;
 
   background-color: #1111;
+
+  @media(max-width: 500px){
+    text-align: center;
+    padding: 0;
+  }
   :hover{
     cursor: pointer;
     color: #fff;
@@ -96,11 +106,18 @@ padding: 30px;
 @media(max-width: 600px){
   padding: 15px;
 }
+
+@media(max-width: 500px){
+  display: flex;
+}
 p{
   margin: 0;
   font-family: eurostile;
   font-weight: 800;
   text-align: right;
+  @media(max-width: 500px){
+    margin-left: 10px;
+  }
 }
 h2{
   font-family: eurostile;
@@ -113,6 +130,9 @@ h2{
 
 
 const Cart = () => {
+  const breakpoints = useBreakpoint();
+
+
   const {
     store: { checkout },
   } = useContext(StoreContext)
@@ -133,7 +153,7 @@ const Cart = () => {
       {lineItems}
       </Items>
       <Price>
-      <Spacer/>
+      {breakpoints.xs ? null : <Spacer/>}
       <PriceItems>
       <h2>Total</h2>
       <p>$ {checkout.totalPrice}</p>
@@ -142,7 +162,7 @@ const Cart = () => {
         onClick={handleCheckout}
         disabled={checkout.lineItems.length === 0}
       >
-        Check out
+        Checkout
       </button>
 
       </Price>
@@ -151,5 +171,6 @@ const Cart = () => {
 
   )
 }
+
 
 export default Cart

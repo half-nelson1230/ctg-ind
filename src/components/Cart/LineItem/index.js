@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { Link } from 'gatsby'
+import {  Link } from 'gatsby'
 import styled from 'styled-components'
+import { useBreakpoint } from 'gatsby-plugin-breakpoints';
 
 import StoreContext from '~/context/StoreContext'
 
@@ -16,12 +17,16 @@ align-items: center;
   grid-template-columns: 25% 1fr 25%;
 }
 
+@media(max-width: 500px){
+  grid-template-columns: 33% 1fr;
+}
+
 img{
   position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
   outline: 2px solid;
-
+  object-fit: cover;
 }
 a{
   outline: 2px solid;
@@ -69,20 +74,34 @@ const BigButton = styled.button`
 
 
 const Info = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-between;
+
 width: 100%;
 padding: 30px;
+font-family: eurostile;
 
 @media(max-width: 600px){
   padding: 15px;
 }
 h4{
-  margin: 0;
-  font-family: eurostile;
+  margin: 5px 0;
   font-weight: 800;
-  text-align: right;
+}
+p{
+  margin: 5px 0;
+}
+
+button{
+  outline: 2px solid;
+  background: none;
+  border: none;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+
+  :hover{
+    cursor: pointer;
+  }
+
 }
 `
 
@@ -122,11 +141,25 @@ button{
 
 `
 
+const Quantity = styled.div`
+display: flex;
+align-items: center;
+p{
+  margin-right: 10px;
+}
+h3{
+  margin-right: 10px;
+}
+`
 
-const LineItem = props => {
+
+const LineItem = (props, {data} ) => {
+  const breakpoints = useBreakpoint();
+
   const { item } = props
   const {
     removeLineItem,
+    updateLineItem,
     store: { client, checkout },
   } = useContext(StoreContext)
 
@@ -149,30 +182,42 @@ const LineItem = props => {
   }
 
   const handleAddOne = () => {
-
+    updateLineItem(client, checkout.id, item.id, item.quantity + 1)
   }
+  const handleMinOne = () => {
+    updateLineItem(client, checkout.id, item.id, item.quantity - 1)
+  }
+  console.log(item.productType);
+
+
+
 
   return (
     <Item>
       {console.log(item)}
+      {console.log(item.quantity)}
 
         {variantImage}
 
       <Info>
-      <div>
+      <Quantity>
       <h3>{item.title}</h3>
       <p>{selectedOptions}</p>
-      </div>
-      <Qty>
-
-      <p>{item.quantity}</p>
-
-      </Qty>
+      </Quantity>
+      <Quantity>
+      <p>QTY: {item.quantity}</p>
+      <button onClick={handleMinOne}>-</button>
+      <button onClick={handleAddOne}>+</button>
+      </Quantity>
       <h4>${item.variant.price * item.quantity}</h4>
+      {breakpoints.xs ? <p onClick={handleRemove}>remove item</p> : null}
       </Info>
-      <BigButton onClick={handleRemove}>X</BigButton>
+      {breakpoints.xs ? null : <BigButton onClick={handleRemove}>X</BigButton>}
     </Item>
   )
 }
+
+
+
 
 export default LineItem
