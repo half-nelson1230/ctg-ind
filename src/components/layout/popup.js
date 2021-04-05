@@ -1,6 +1,8 @@
 import * as React from "react"
 import {useState} from "react"
 import styled from 'styled-components'
+import { graphql } from 'gatsby'
+import { RichText } from 'prismic-reactjs';
 
 //styled
 const Container = styled.div`
@@ -74,7 +76,7 @@ border-bottom: 2px solid;
 `
 
 
-const Signup = () =>{
+const Signup = (props) =>{
 
   const [closeBox, checkClosed] = useState(false);
   const clickBox = () => {
@@ -83,16 +85,32 @@ const Signup = () =>{
   return(
       <div>
       {closeBox ? null : <Container>
-        <h2>NEWSLETTER</h2>
-        <p>Get 10% off on your first order and stay updated on the latest products ...</p>
-        <h3>EMAIL</h3>
+        <RichText render={props.text}/>
+        <h3>{props.emailText}</h3>
         <input className={'box'}></input>
-        <button className={'box'}>CONNEXION</button>
+        <button className={'box'}>{props.submitText}</button>
         <Close onClick={clickBox}>X</Close>
       </Container>}
 
       </div>
   )
 }
+export const query = graphql`
+query EmailQuery {
+  allPrismicEmailSignup {
+    edges {
+      node {
+        data {
+          email_field
+          submit_text
+          text {
+            raw
+          }
+        }
+      }
+    }
+  }
+}
+`
 
 export default Signup

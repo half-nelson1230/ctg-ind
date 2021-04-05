@@ -3,6 +3,8 @@ import Layout from '~/components/layout'
 import styled from 'styled-components'
 import ReactPlayer from 'react-player'
 import ProcessVid from '~/components/Process/videoblock'
+import {ProcessVideo} from '~/components/layout/slices/slices'
+import { graphql } from 'gatsby'
 
 import aboutImg from '~/images/Links/snow-peak-fall-winter-2019-lookbook-collection-12.jpg'
 import firstImage from "~/images/Links/WPD_07.jpg"
@@ -29,39 +31,65 @@ a{
 }
 `
 
+const Slices = ({ slices }) =>
+slices.map((slice, index) => {
+  const res = (() => {
+    switch (slice.slice_type){
+      case 'video':
+      return(
+        <ProcessVideo slice={slice}/>
+      )
+      default:
+    }
+  })()
+  return res
+})
 
 
-const Process = () => {
+const Process = ({ data }) => {
+  const document = data.allPrismicProcess.edges[0].node.data
+
   return(
 
     <Main>
-    <ProcessVid
-      title='Organic Cotton'
-      para='We use organic cotton grown in Texas by Texas
-Organic Cotton Marketing Collective (TOCMC).
-The raw cotton is then shipped to North Carolina where it is spun and knit into our organic cotton jersey.
-The rolls of fabric are then shipped to our
-manufacturing facility in New York to be made into our products. Here is a short video illustrating this process, the people and machinery involved.
-
-Video Credit : Jake Robins'
-      vidUrl='https://vimeo.com/502084279'
-      thumb={firstImage}
-    />
-    <ProcessVid
-      title='Organic Cotton'
-      para='We use organic cotton grown in Texas by Texas
-Organic Cotton Marketing Collective (TOCMC).
-The raw cotton is then shipped to North Carolina where it is spun and knit into our organic cotton jersey.
-The rolls of fabric are then shipped to our
-manufacturing facility in New York to be made into our products. Here is a short video illustrating this process, the people and machinery involved.
-
-Video Credit : Jake Robins'
-      vidUrl='https://vimeo.com/496843494'
-      thumb={secondImage}
-    />
+    <Slices slices={document.body}/>
     </Main>
 
   )
 }
+
+export const query = graphql`
+  query ProcessQuery {
+    allPrismicProcess {
+   edges {
+     node {
+       data {
+         body {
+
+           ... on PrismicProcessBodyVideo {
+             slice_type
+              id
+              primary {
+                placeholder_image {
+                  url
+                }
+                text {
+                  raw
+                }
+                video_link {
+                  url
+                  embed_url
+                }
+              }
+            }
+
+         }
+       }
+
+     }
+   }
+ }
+  }
+`
 
 export default Process

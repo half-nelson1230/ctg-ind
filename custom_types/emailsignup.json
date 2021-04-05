@@ -1,0 +1,23 @@
+{
+  "Main" : {
+    "text" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, heading3",
+        "label" : "text"
+      }
+    },
+    "email_field" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "email field"
+      }
+    },
+    "submit_text" : {
+      "type" : "Text",
+      "config" : {
+        "label" : "submit text"
+      }
+    }
+  }
+}

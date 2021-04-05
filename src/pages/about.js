@@ -88,6 +88,7 @@ overflow-y: scroll;
 
 @media(max-width: 500px){
   grid-column: span 4;
+  min-height: none !important;
 }
 
 h2{

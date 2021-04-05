@@ -1,0 +1,46 @@
+{
+  "Main" : {
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "video" : [ ]
+        },
+        "choices" : {
+          "video" : {
+            "type" : "Slice",
+            "fieldset" : "video",
+            "description" : "video",
+            "icon" : "ondemand_video",
+            "display" : "list",
+            "non-repeat" : {
+              "text" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, heading3, hyperlink",
+                  "label" : "text"
+                }
+              },
+              "video_link" : {
+                "type" : "Embed",
+                "config" : {
+                  "label" : "video link"
+                }
+              },
+              "placeholder_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : { },
+                  "thumbnails" : [ ],
+                  "label" : "placeholder image"
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  }
+}

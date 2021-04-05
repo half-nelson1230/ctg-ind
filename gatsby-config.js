@@ -26,6 +26,9 @@ module.exports = {
        linkResolver: () => (doc) => linkResolver(doc),
        schemas: {
           about: require('./custom_types/about.json'),
+          homepage: require('./custom_types/homepage.json'),
+          email_signup: require('./custom_types/emailsignup.json'),
+          process: require('./custom_types/process.json'),
        },
        },
      },

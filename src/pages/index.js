@@ -6,10 +6,8 @@ import Signup from '../components/layout/popup.js'
 import Footer from '../components/layout/footer.js'
 import Layout from "~/components/layout"
 import Helmet from 'react-helmet'
-//images
-import firstImage from "~/images/Links/WPD_07.jpg"
-import secondImage from "~/images/Links/WPD_09.jpg"
-import thirdImage from "~/images/Links/newThird.jpg"
+import {FullImage, TwoImages} from '~/components/layout/slices/slices'
+import { graphql } from 'gatsby'
 
 //styled components
 const Container = styled.div`
@@ -18,16 +16,6 @@ flex-wrap: wrap;
 position: relative;
 img{
 display: block;
-&.bigImage{
-  width: 100%;
-}
-
-&.halfImage{
-  width: 50%;
-  @media(max-width: 750px){
-    width: 100%;
-  }
-}
 }
 `
 
@@ -39,7 +27,32 @@ display: flex;
 
 
 // markup
-const IndexPage = () => {
+
+
+const Slices = ({ slices }) =>
+slices.map((slice, index) => {
+  const res = (() => {
+    switch (slice.slice_type){
+      case 'full_image':
+      return(
+        <FullImage slice={slice}/>
+      )
+      case '2_images':
+      return(
+        <TwoImages slice={slice}/>
+      )
+      default:
+    }
+  })()
+  return res
+})
+
+
+
+const IndexPage = ({ data }) => {
+  const document = data.allPrismicHomepage.edges[0].node.data
+  const emaildoc = data.allPrismicEmailSignup.edges[0].node.data
+
   return (
     <>
     <Helmet>
@@ -47,15 +60,68 @@ const IndexPage = () => {
 </Helmet>
     <Container>
     <GlobalStyle/>
-
-
-    <img src={firstImage} alt="first" className={"bigImage"}/>
-    <img src={secondImage} alt="second" className={"halfImage"}/>
-    <img src={thirdImage} alt="third" className={"halfImage"}/>
-    <Signup/>
+    <Slices slices={document.body}/>
+    <Signup
+      text={emaildoc.text.raw}
+      emailText={emaildoc.email_field}
+      submitText={emaildoc.submit_text}
+    />
     </Container>
     </>
   )
 }
+
+export const query = graphql`
+  query HomeQuery {
+    allPrismicHomepage {
+   edges {
+     node {
+       data {
+         body {
+
+           ... on PrismicHomepageBodyFullImage {
+             slice_type
+              id
+              primary {
+                image {
+                  url
+                }
+              }
+            }
+
+            ... on PrismicHomepageBody2Images {
+              slice_type
+               id
+               primary {
+                 image_1 {
+                   url
+                 }
+                 image_2 {
+                   url
+                 }
+               }
+             }
+
+         }
+       }
+
+     }
+   }
+ }
+ allPrismicEmailSignup {
+   edges {
+     node {
+       data {
+         email_field
+         submit_text
+         text {
+           raw
+         }
+       }
+     }
+   }
+ }
+  }
+`
 
 export default IndexPage
