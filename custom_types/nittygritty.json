@@ -1,0 +1,18 @@
+{
+  "Main" : {
+    "uid" : {
+      "type" : "UID",
+      "config" : {
+        "label" : "url"
+      }
+    },
+    "text" : {
+      "type" : "StructuredText",
+      "config" : {
+        "multi" : "paragraph, heading2, heading3, heading4, heading5, heading6, strong, hyperlink, image, list-item, o-list-item",
+        "allowTargetBlank" : true,
+        "label" : "text"
+      }
+    }
+  }
+}

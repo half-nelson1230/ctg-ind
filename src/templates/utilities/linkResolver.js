@@ -1,5 +1,5 @@
 const linkResolver = (doc) => {
-  if (doc.type === 'work') {
+  if (doc.type === 'nitty_gritty') {
     return `/${doc.uid}`
   }
   return '/'

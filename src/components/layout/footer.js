@@ -1,5 +1,8 @@
 import * as React from "react"
 import styled from 'styled-components'
+import { StaticQuery, graphql } from 'gatsby'
+import { RichText } from 'prismic-reactjs';
+import CustomLink from '~/templates/utilities/customLink'
 
 const Container = styled.div`
 width: ${props => props.full ? '100%' : 'calc(100% - var(--Margin) * 2)'};
@@ -85,33 +88,35 @@ const Footer = (props) => {
   return(
     <Container className='fixfoot'
     full={props.full}>
-    <Block>
-      <h3>Contact</h3>
-      <ul>
-        <li>email us</li>
-        <li>instagram</li>
-      </ul>
-    </Block>
-    <Block>
-    <h3>Services</h3>
-    <ul>
-      <li>FAQ</li>
-      <li>Shipping & Returns</li>
-    </ul>
-    </Block>
-    <Block>
-    <h3>Newsletter</h3>
-    <ul>
-      <li>subscribe to our newsletter</li>
-    </ul>
-    </Block>
-    <Block>
-    <h3>Terms of Service</h3>
-    <ul>
-      <li>Terms & Conditions</li>
-      <li>Privacy Policy</li>
-    </ul>
-    </Block>
+    <StaticQuery
+        query={graphql`
+          query footerQuery {
+            prismicFooter {
+    data {
+      section {
+        links {
+          raw
+        }
+        category
+      }
+    }
+  }
+          }
+        `}
+        render={data => (
+          <>
+              {data.prismicFooter.data.section.map((block, i) => (
+                <Block key={`block-${i}`}>
+                <h3>{block.category}</h3>
+                <ul>
+                <RichText render={block.links.raw} serializeHyperlink={CustomLink}/>
+                </ul>
+                </Block>
+              ))}
+
+          </>
+        )}
+      />
     </Container>
   )
 }

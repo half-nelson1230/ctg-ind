@@ -1,0 +1,25 @@
+{
+  "Main": {
+    "section": {
+      "type": "Group",
+      "config": {
+        "fields": {
+          "category": {
+            "type": "Text",
+            "config": {
+              "label": "category"
+            }
+          },
+          "links": {
+            "type": "StructuredText",
+            "config": {
+              "single": "hyperlink, list-item",
+              "label": "links"
+            }
+          }
+        },
+        "label": "section"
+      }
+    }
+  }
+}

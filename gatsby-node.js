@@ -11,6 +11,15 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
+      allPrismicNittyGritty{
+        nodes{
+          id
+          lang
+          type
+          url
+          uid
+        }
+      }
     }
   `).then(result => {
     result.data.allShopifyProduct.edges.forEach(({ node }) => {
@@ -24,5 +33,15 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+    result.data.allPrismicNittyGritty.nodes.forEach((page) =>{
+      createPage({
+        path: page.url,
+        component: path.resolve(`./src/templates/nitty.js`),
+        context: {
+          uid: page.uid
+        },
+      })
+    })
+
   })
 }
