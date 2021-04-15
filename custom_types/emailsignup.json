@@ -1,22 +1,35 @@
 {
-  "Main" : {
-    "text" : {
-      "type" : "StructuredText",
-      "config" : {
-        "multi" : "paragraph, heading3",
-        "label" : "text"
+  "Main": {
+    "title": {
+      "type": "Text",
+      "config": {
+        "label": "title"
       }
     },
-    "email_field" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "email field"
+    "default_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "default text"
       }
     },
-    "submit_text" : {
-      "type" : "Text",
-      "config" : {
-        "label" : "submit text"
+    "success_text": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "success text"
+      }
+    },
+    "email_field": {
+      "type": "Text",
+      "config": {
+        "label": "email field"
+      }
+    },
+    "submit_text": {
+      "type": "Text",
+      "config": {
+        "label": "submit text"
       }
     }
   }

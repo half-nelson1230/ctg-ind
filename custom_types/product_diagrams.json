@@ -1,0 +1,66 @@
+{
+  "Main" : {
+    "product" : {
+      "type" : "IntegrationFields",
+      "config" : {
+        "catalog" : "ctgind--ctg_ind",
+        "label" : "product"
+      }
+    },
+    "image" : {
+      "type" : "Image",
+      "config" : {
+        "constraint" : { },
+        "thumbnails" : [ ],
+        "label" : "image"
+      }
+    },
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : {
+          "product" : [ ],
+          "size" : [ ]
+        },
+        "choices" : {
+          "size" : {
+            "type" : "Slice",
+            "fieldset" : "size",
+            "description" : "chart for 1 size",
+            "icon" : "format_list_bulleted",
+            "display" : "list",
+            "non-repeat" : {
+              "size" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "size"
+                }
+              }
+            },
+            "repeat" : {
+              "measurement" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "measurement"
+                }
+              },
+              "size_in" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "size inches"
+                }
+              },
+              "size_cm" : {
+                "type" : "Text",
+                "config" : {
+                  "label" : "size cm"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -10,14 +10,16 @@ import ProductForm from '../components/ProductForm/index'
 import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './utilities/productStyles'
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
-
+import Diagrams from '~/components/layout/diagram'
 const ProductTemplate = ({ data }) => {
     const breakpoints = useBreakpoint();
     const [whatIndex, setIndex] = useState(0);
+    const [sizeIndex, checkIndex] = useState(0);
 
     const product=data.shopifyProduct
     const allproduct=data.allShopifyProduct
-
+    const diagram=data.allPrismicProductDiagrams
+    const diagramSlice = data.allPrismicProductDiagramsBodySize
 
   return (
   <>
@@ -27,6 +29,7 @@ const ProductTemplate = ({ data }) => {
     <GlobalStyle/>
 
       <MainFixed>
+
       {breakpoints.sm ? null : <LabelsFixed>
       {allproduct.edges.map(({node}) =>
       <Link to={`/products/${node.handle}`} activeClassName="active">
@@ -56,11 +59,12 @@ const ProductTemplate = ({ data }) => {
       <div className='outliner'>
       <h2>{product.title}</h2>
       <p>{product.productType}</p>
-
       </div>
 
       <div className='outliner' dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}/>
-
+      <Diagrams
+        testo={product.title}
+      />
       <div className='outliner' >
         <h3>${product.priceRange.minVariantPrice.amount}</h3>
         <p>Tax Incl.</p>
@@ -77,6 +81,33 @@ const ProductTemplate = ({ data }) => {
 
 export const query = graphql`
   query($handle: String!) {
+    allPrismicProductDiagrams {
+   edges {
+     node {
+       data {
+         product
+         image {
+           url
+         }
+       }
+     }
+   }
+ }
+ allPrismicProductDiagramsBodySize {
+   edges {
+     node {
+       items {
+         measurement
+         size_cm
+         size_in
+       }
+       primary {
+         size
+       }
+     }
+   }
+ }
+
     allShopifyProduct(sort: { fields: [title] }) {
   edges {
     node {

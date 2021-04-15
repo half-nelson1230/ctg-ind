@@ -62,7 +62,9 @@ const IndexPage = ({ data }) => {
     <GlobalStyle/>
     <Slices slices={document.body}/>
     <Signup
-      text={emaildoc.text.raw}
+      title={emaildoc.title}
+      text={emaildoc.default_text.raw}
+      successText={emaildoc.success_text.raw}
       emailText={emaildoc.email_field}
       submitText={emaildoc.submit_text}
     />
@@ -112,11 +114,15 @@ export const query = graphql`
    edges {
      node {
        data {
-         email_field
-         submit_text
-         text {
-           raw
-         }
+         default_text {
+          raw
+        }
+        success_text {
+          raw
+        }
+        email_field
+        submit_text
+        title
        }
      }
    }

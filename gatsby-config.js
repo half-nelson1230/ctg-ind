@@ -32,7 +32,15 @@ module.exports = {
           footer: require('./custom_types/footer.json'),
           nitty_gritty: require('./custom_types/nittygritty.json'),
           product: require('./custom_types/testproduct.json'),
+          product_diagrams: require('./custom_types/product_diagrams.json'),
        },
+       },
+     },
+     {
+       resolve: 'gatsby-plugin-mailchimp',
+       options: {
+         endpoint: process.env.MAILCHIMP_ENDPOINT,
+         timeout: 3500,
        },
      },
    {

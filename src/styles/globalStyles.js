@@ -79,6 +79,12 @@ ul, li{
   list-style: none;
 }
 
+button{
+  :hover{
+    cursor: pointer;
+  }
+}
+
 .fixed{
   position: fixed;
   width: calc(100% - var(--Margin) * 2);

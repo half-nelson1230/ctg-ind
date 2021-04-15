@@ -3,6 +3,10 @@ import {useState} from "react"
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
+import addToMailchimp from 'gatsby-plugin-mailchimp'
+import Draggable from 'react-draggable'; // The default
+
+
 
 //styled
 const Container = styled.div`
@@ -16,6 +20,11 @@ padding: 30px;
 text-align: center;
 font-family: eurostile;
 z-index: 2;
+
+:hover{
+  cursor: move;
+}
+
 h2{
   font-weight: 800;
   font-size: 18px;
@@ -46,7 +55,14 @@ input, button{
   padding: 0;
   box-sizing: inherit;
   margin: 10px 0;
+  text-align: center;
 }}
+
+button{
+  :hover{
+    cursor: pointer;
+  }
+}
 
 `
 
@@ -81,18 +97,84 @@ const Signup = (props) =>{
   const [closeBox, checkClosed] = useState(false);
   const clickBox = () => {
     checkClosed(!closeBox);
+    sessionStorage.setItem('tempClose', true);
   }
-  return(
-      <div>
-      {closeBox ? null : <Container>
-        <RichText render={props.text}/>
-        <h3>{props.emailText}</h3>
-        <input className={'box'}></input>
-        <button className={'box'}>{props.submitText}</button>
-        <Close onClick={clickBox}>X</Close>
-      </Container>}
 
-      </div>
+
+  const [email, checkEmail] = useState(null);
+  const [result, checkResult] = useState(null);
+
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const result = await addToMailchimp(email)
+    checkResult({result: result})
+    }
+
+  const handleChange = e => {
+    checkEmail(e.target.value)
+  }
+
+  let peepResult;
+  let resultMessage;
+  let hideform;
+  let delayform;
+
+  if(result === null){
+    peepResult = 'default'
+  }else {
+    peepResult = result.result.result
+    resultMessage = result.result.msg
+  }
+
+  if(peepResult === 'success'){
+    setTimeout(() => {checkClosed(true)}, 2000);
+    setTimeout(() => {localStorage.setItem('closed', true)}, 2000) ;
+  }
+
+  const storeClose = localStorage.getItem('closed')
+  const tempClose = sessionStorage.getItem('tempClose')
+  return(
+    <>
+    {storeClose ? null :
+    <>
+    {tempClose ? null :
+      <>
+      {hideform ? null :
+        <>
+        {closeBox ? null :
+        <form onSubmit={handleSubmit} className={`form ${hideform}`}>
+        <Draggable>
+        <Container className="">
+        <>
+        <h2>{props.title}</h2>
+        {peepResult === 'success' ? <RichText render={props.successText}/>
+        : peepResult === 'error' ? <p>{resultMessage}</p>
+        :
+        <RichText render={props.text}/>
+        }
+        <h3>{props.emailText}</h3>
+           <input
+           className={'box'}
+           type="text"
+           value={email}
+           onChange={handleChange}
+           />
+       <button className={'box'}  type="submit">{props.submitText}</button>
+       </>
+        <Close onClick={clickBox}>X</Close>
+        </Container>
+        </Draggable>
+        </form>
+        }
+        </>
+      }
+      </>}
+    </>}
+
+
+    </>
   )
 }
 export const query = graphql`
@@ -101,11 +183,15 @@ query EmailQuery {
     edges {
       node {
         data {
-          email_field
-          submit_text
-          text {
-            raw
-          }
+          default_text {
+          raw
+        }
+        success_text {
+          raw
+        }
+        email_field
+        submit_text
+        title
         }
       }
     }
