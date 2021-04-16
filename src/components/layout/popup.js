@@ -1,5 +1,5 @@
 import * as React from "react"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
@@ -95,6 +95,13 @@ border-bottom: 2px solid;
 const Signup = (props) =>{
 
   const [closeBox, checkClosed] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem('closeBox', 'true')){
+      checkClosed(true)
+    }
+  }, [])
+
   const clickBox = () => {
     checkClosed(!closeBox);
     sessionStorage.setItem('tempClose', true);
