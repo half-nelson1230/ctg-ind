@@ -96,11 +96,13 @@ const Signup = (props) =>{
 
   const [closeBox, checkClosed] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem('closeBox', 'true')){
-      checkClosed(true)
-    }
-  }, [])
+
+
+  const [email, checkEmail] = useState(null);
+  const [result, checkResult] = useState(null);
+
+  const [closeTemp, setCloseTemp] = useState(undefined)
+  const [storeClose, setStoreClose] = useState(undefined)
 
   const clickBox = () => {
     checkClosed(!closeBox);
@@ -108,10 +110,12 @@ const Signup = (props) =>{
   }
 
 
-  const [email, checkEmail] = useState(null);
-  const [result, checkResult] = useState(null);
+  useEffect(() => {
+    setCloseTemp(sessionStorage.getItem('tempClose'))
+    setStoreClose(localStorage.getItem('closed'))
+  }, [])
 
-
+  console.log(closeTemp);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -140,13 +144,11 @@ const Signup = (props) =>{
     setTimeout(() => {localStorage.setItem('closed', true)}, 2000) ;
   }
 
-  const storeClose = localStorage.getItem('closed')
-  const tempClose = sessionStorage.getItem('tempClose')
   return(
     <>
     {storeClose ? null :
     <>
-    {tempClose ? null :
+    {closeTemp ? null :
       <>
       {hideform ? null :
         <>
