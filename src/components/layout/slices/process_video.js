@@ -8,6 +8,8 @@ const VideoBlock = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
+
+
 @media(max-width: 1200px){
   grid-template-columns: 120px 1fr 1fr 1fr;
 }
@@ -32,8 +34,9 @@ font-family: eurostile;
 h3{
   margin: 0;
   font-weight: 800;
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 p{
   margin: 0;
@@ -82,6 +85,14 @@ outline: 2px solid;
 pointer-events: none;
 `
 
+const NoVid = styled.div`
+background-image: url(${props => props.bgImg});
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center center;
+`
+
 
 export default function ProcessVideo({ slice }) {
 
@@ -99,6 +110,7 @@ return(
 {show && <Filler onClick={() => clickplay(!playin)}/>}
 */}
 <Filler2/>
+{vid ?
   <ReactPlayer
 className={'react-player'}
 url={vid}
@@ -119,7 +131,9 @@ config={{
         }
       }
 
-}}/>
+}}/> : <NoVid
+          bgImg={thumb}
+        />}
   </Video>
   </VideoBlock>
 )

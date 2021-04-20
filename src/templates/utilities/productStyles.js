@@ -20,7 +20,7 @@ img{
 `
 
 export const MainFixed=styled(Main)`
-margin-top: calc(85px + var(--Margin));
+margin-top: calc(77px + var(--Margin));
 position: relative;
 
 @media(max-width: 750px){
@@ -30,17 +30,27 @@ position: relative;
 a{
   &.active{
     div{
-    background-color: #000;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     outline-color: #000 !important;
+    position: relative;
+    span{
+      width: 5px;
+      height: 100%;
+      background-color: #000;
+      opacity: 0.4;
+      right: 0;
+      position: absolute;
     }
+    }
+
   }
 }
 `
 
 export const Info = styled.div`
 position: sticky;
-top: calc(85px + var(--Margin));
+top: calc(77px + var(--Margin));
 right: var(--Margin);
 height: fit-content;
 
@@ -85,7 +95,7 @@ div{
 
 export const LabelsFixed=styled(Labels)`
 position: fixed;
-top: calc(85px + var(--Margin));
+top: calc(77px + var(--Margin));
 left: var(--Margin);
 width: calc((100% - var(--Margin) * 2) / 4);
 

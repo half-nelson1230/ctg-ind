@@ -11,6 +11,8 @@ import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './uti
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
+
+
 const ProductTemplate = ({ data }) => {
     const breakpoints = useBreakpoint();
     const [whatIndex, setIndex] = useState(0);
@@ -33,11 +35,13 @@ const ProductTemplate = ({ data }) => {
       {breakpoints.sm ? null : <LabelsFixed>
       {allproduct.edges.map(({node}) =>
       <Link to={`/products/${node.handle}`} activeClassName="active">
+
       <Label
       key={node.shopifyId}
       className={whatIndex === node.shopifyId ? 'testLink' : ''}
       onMouseEnter={() => setIndex(node.shopifyId)}
       onMouseLeave={() => setIndex(0)}>
+      <span/>
       <h3>{node.title}</h3>
       {breakpoints.md ?  null : <p>{node.productType}</p> }
       </Label>

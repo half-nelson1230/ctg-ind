@@ -69,7 +69,7 @@ min-height: 100%;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #000;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* Handle on hover */
@@ -93,10 +93,12 @@ overflow-y: scroll;
 
 h2{
   font-weight: 800;
+  text-transform: uppercase;
+  font-size: 24px;
 }
 
 h3{
-  margin: 0;
+  margin: 0 0 5px;
 }
 
 p{

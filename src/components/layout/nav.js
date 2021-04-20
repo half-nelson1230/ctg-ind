@@ -5,7 +5,7 @@ import logoImgSmall from '../../images/Links/logoSmall.svg'
 import {Link} from 'gatsby'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
 
-import cartImage from '~/images/Links/cartIcon.png'
+import cartImage from '~/images/Links/cart.svg'
 
 
 import reduce from 'lodash/reduce'
@@ -31,6 +31,8 @@ const Menu = styled.ul`
 width: 100%;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
+
+
 @media(max-width: 1200px ){
   grid-template-columns: 120px 1fr 1fr 1fr;
 }
@@ -39,12 +41,18 @@ grid-template-columns: repeat(4, 1fr);
 }
 a{
   height: 100%;
-
+  position: relative;
   &.active{
-    li{
+    span{
+      height: 5px;
+      width: 100%;
       background-color: #000;
-      color: #fff;
-      outline-color: #000;
+      opacity: 0.4;
+      top: 0;
+      position: absolute;
+    }
+    li{
+
     }
   }
 }
@@ -83,11 +91,13 @@ const NoLeft = styled.li`
 `
 
 const Logo = styled.img`
-height: 55px;
+height: 42px;
+margin: 5px 0 0 10px;
 max-width: 100%;
 
 @media(max-width: 750px){
   height: 28px;
+  margin: 0;
 }
 `
 
@@ -129,8 +139,10 @@ div{
 
   img{
     width: 30px;
+    padding: 0 3px;
     @media(max-width: 750px){
       width: 20px;
+      padding: 0;
     }
   }
   span{
@@ -193,9 +205,9 @@ const Nav = (props) =>{
          <Link to='/'><li>
          {breakpoints.md ? <Logo src={logoImgSmall}/> : <Logo src={logoImg}/>}
          </li></Link>
-         <Link to='/about' activeClassName="active"><NoLeft className="noLeft">About</NoLeft></Link>
-         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft></Link>
-         <Link to='/process' activeClassName="active"><NoLeft bgColor={`#999`}>Process</NoLeft></Link>
+         <Link to='/about' activeClassName="active"><NoLeft className="noLeft">About</NoLeft><span/></Link>
+         <Link to='/products' activeClassName="active"><NoLeft>Products</NoLeft><span/></Link>
+         <Link to='/process' activeClassName="active"><NoLeft bgColor={`#999`}>Process</NoLeft><span/></Link>
        </Menu>
        <Icons>
          <Link to='/cart' activeClassName="activeCart"><div><img src={cartImage}/><span>{quantity}</span></div></Link>

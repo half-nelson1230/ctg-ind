@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => {
     <>
     <Helmet>
     <body class='nav-switch2' />
-</Helmet>
+    </Helmet>
     <Container>
     <GlobalStyle/>
     <Slices slices={document.body}/>

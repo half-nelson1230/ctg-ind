@@ -48,7 +48,7 @@ p{
 `
 
 const GuideToggle = styled.button`
-padding: 0 10px;
+padding: 0 10px 0 20px;
 background: #fff;
 border: none;
 outline: 2px solid;
