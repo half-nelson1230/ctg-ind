@@ -69,7 +69,7 @@ min-height: 100%;
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.4);
+  background: #000;
 }
 
 /* Handle on hover */
@@ -88,7 +88,8 @@ overflow-y: scroll;
 
 @media(max-width: 500px){
   grid-column: span 4;
-  min-height: none !important;
+  min-height: 0 !important;
+  max-height: inherit;
 }
 
 h2{
@@ -137,7 +138,7 @@ const About = ({ data }) => {
     <Text>
       <RichText render={document.priorities.raw}/>
     </Text>
-    <AboutImg src={aboutImg}/>
+    <AboutImg src={document.image.url}/>
     </Main>
 
   )
@@ -156,6 +157,9 @@ query AboutQuery {
           priorities {
             html
             raw
+          }
+          image{
+            url
           }
         }
       }

@@ -23,6 +23,7 @@ const ProductTemplate = ({ data }) => {
     const diagram=data.allPrismicProductDiagrams
     const diagramSlice = data.allPrismicProductDiagramsBodySize
 
+
   return (
   <>
     <Helmet>
@@ -70,7 +71,7 @@ const ProductTemplate = ({ data }) => {
         testo={product.title}
       />
       <div className='outliner' >
-        <h3>${product.priceRange.minVariantPrice.amount}</h3>
+        <h3>${product.variants[0].price}</h3>
         <p>Tax Incl.</p>
         <p>Free shipping over 200$</p>
        <ProductForm product={product} />

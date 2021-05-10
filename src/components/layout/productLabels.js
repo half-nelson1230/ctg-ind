@@ -87,6 +87,9 @@ export const query = graphql`
         node {
           title
           productType
+          variants{
+            price
+          }
           images {
             id
             originalSrc

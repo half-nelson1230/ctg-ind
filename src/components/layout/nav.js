@@ -43,14 +43,7 @@ a{
   height: 100%;
   position: relative;
   &.active{
-    span{
-      height: 5px;
-      width: 100%;
-      background-color: #000;
-      opacity: 0.4;
-      top: 0;
-      position: absolute;
-    }
+
     li{
 
     }

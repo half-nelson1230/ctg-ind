@@ -48,12 +48,7 @@ margin: 0 var(--Margin);
 }
 a{
   &.active{
-    div{
-      background-color: #000;
-      color: #fff;
-      outline-color: #000 !important;
-      cursor: pointer;
-    }
+
   }
 }
 
@@ -80,7 +75,7 @@ grid-template-columns: repeat(3, 1fr);
 
 const ImageDiv = styled.div`
 height: 400px;
-padding-bottom: 120%;
+padding-bottom: 150%;
 background-image: ${props => `url(${props.background})`};
 background-size: cover;
 outline: 2px solid;
@@ -203,7 +198,7 @@ const ProductPage = ({ data }) => {
         <h3>{node.title}</h3>
         <p>{node.productType}</p>
         </NameCat>
-        <Price>${node.priceRange.minVariantPrice.amount}</Price>
+        <Price>${node.variants[0].price}</Price>
       </PicLabels>
 
       :
@@ -243,13 +238,17 @@ const ProductPage = ({ data }) => {
         null
         :
         <Labels>
-        {productList}
+        {productList[2]}
+        {productList[0]}
+        {productList[1]}
         </Labels>
 
       }
 
       <Products>
-      {productPics}
+      {productPics[2]}
+      {productPics[0]}
+      {productPics[1]}
       </Products>
     </Main>
 
@@ -276,6 +275,9 @@ export const query = graphql`
           shopifyId
           description
           handle
+          variants{
+            price
+          }
           priceRange {
             minVariantPrice {
               amount
