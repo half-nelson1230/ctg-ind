@@ -1,7 +1,7 @@
 import * as React from "react"
 import {useState, useRef} from "react"
 import styled from 'styled-components'
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby' 
 import { RichText } from 'prismic-reactjs';
 
 import arrow from '~/images/Links/arrow.svg'
