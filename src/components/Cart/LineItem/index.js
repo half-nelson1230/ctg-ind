@@ -19,6 +19,7 @@ align-items: center;
 
 @media(max-width: 500px){
   grid-template-columns: 33% 1fr;
+
 }
 
 img{
@@ -190,7 +191,7 @@ const LineItem = (props, {data} ) => {
   console.log(item.productType);
 
 
-
+/* gatsby update*/
 
   return (
     <Item>
