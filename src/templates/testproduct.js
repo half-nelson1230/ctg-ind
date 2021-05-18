@@ -7,6 +7,7 @@ const Main = styled.div`
 width: calc(100% - var(--Margin)*2);
 margin: 0 var(--Margin);
 font-family: eurostile;
+
 `
 
 
