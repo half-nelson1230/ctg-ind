@@ -3,7 +3,6 @@ import {useState, useRef} from "react"
 import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
-import scrollToComponent from 'react-scroll-to-component';
 
 import arrow from '~/images/Links/arrow.svg'
 

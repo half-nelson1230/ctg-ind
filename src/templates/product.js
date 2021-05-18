@@ -11,7 +11,6 @@ import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './uti
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
-import scrollToComponent from 'react-scroll-to-component';
 
 const Clear = styled.div``
 
