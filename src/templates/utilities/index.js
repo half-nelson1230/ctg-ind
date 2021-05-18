@@ -21,6 +21,7 @@
     "shopifyId": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMTc4NDQ4MTAzMDE4OA==",
     "color": "Red",
     "size": "Small"
+    
   },
 */
 
