@@ -4,7 +4,7 @@ import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
 
 const Main = styled.div`
-width: calc(100% - var(--Margin)*2);
+width: calc(100% - var(--Margin)*2); 
 margin: 0 var(--Margin);
 font-family: eurostile;
 
