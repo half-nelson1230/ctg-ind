@@ -89,6 +89,7 @@ const NoVid = styled.div`
 background-image: url(${props => props.bgImg});
 width: 100%;
 height: 100%;
+min-height: 300px;
 background-size: cover;
 background-position: center center;
 `

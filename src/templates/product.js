@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Layout from "~/components/layout"
 import GlobalStyle from '../styles/globalStyles.js'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
@@ -11,18 +11,37 @@ import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './uti
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
+import scrollToComponent from 'react-scroll-to-component';
 
+const Clear = styled.div``
 
 const ProductTemplate = ({ data }) => {
     const breakpoints = useBreakpoint();
     const [whatIndex, setIndex] = useState(0);
     const [sizeIndex, checkIndex] = useState(0);
 
+    const clearRef = useRef(null);
+
     const product=data.shopifyProduct
     const allproduct=data.allShopifyProduct
     const diagram=data.allPrismicProductDiagrams
     const diagramSlice = data.allPrismicProductDiagramsBodySize
 
+
+    const productList = data.allShopifyProduct.edges.map(({node}) =>
+    <Link to={`/products/${node.handle}`} >
+
+    <Label
+    key={node.shopifyId}
+    className={whatIndex === node.shopifyId ? 'testLink' : ''}
+    onMouseEnter={() => setIndex(node.shopifyId)}
+    onMouseLeave={() => setIndex(0)}>
+    <span/>
+    <h3>{node.title}</h3>
+    {breakpoints.md ?  null : <p>{node.productType}</p> }
+    </Label>
+    </Link>
+    )
 
   return (
   <>
@@ -34,20 +53,9 @@ const ProductTemplate = ({ data }) => {
       <MainFixed>
 
       {breakpoints.sm ? null : <LabelsFixed>
-      {allproduct.edges.map(({node}) =>
-      <Link to={`/products/${node.handle}`} activeClassName="active">
-
-      <Label
-      key={node.shopifyId}
-      className={whatIndex === node.shopifyId ? 'testLink' : ''}
-      onMouseEnter={() => setIndex(node.shopifyId)}
-      onMouseLeave={() => setIndex(0)}>
-      <span/>
-      <h3>{node.title}</h3>
-      {breakpoints.md ?  null : <p>{node.productType}</p> }
-      </Label>
-      </Link>
-    )}
+        {productList[2]}
+        {productList[0]}
+        {productList[1]}
       </LabelsFixed>}
 
 
@@ -68,17 +76,16 @@ const ProductTemplate = ({ data }) => {
 
       <div className='outliner' dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}/>
       <Diagrams
+      scrolly={clearRef}
         testo={product.title}
       />
       <div className='outliner' >
         <h3>${product.variants[0].price}</h3>
-        <p>Tax Incl.</p>
-        <p>Free shipping over 200$</p>
        <ProductForm product={product} />
       </div>
       </Info>
 
-
+      <Clear ref={clearRef}/>
       </MainFixed>
   </>
   )

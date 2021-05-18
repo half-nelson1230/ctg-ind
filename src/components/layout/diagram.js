@@ -1,8 +1,9 @@
 import * as React from "react"
-import {useState} from "react"
+import {useState, useRef} from "react"
 import styled from 'styled-components'
 import { graphql, StaticQuery } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
+import scrollToComponent from 'react-scroll-to-component';
 
 import arrow from '~/images/Links/arrow.svg'
 
@@ -121,9 +122,13 @@ const Diagrams = (props, { data }) =>{
   const [size, sizeCheck] = useState(false);
   const [inch, inchCheck] = useState(true);
   const [sizeIndex, checkIndex] = useState(0);
-
+  const scrollo = props.scrolly
   const toggleSize = () => {
     sizeCheck(!size);
+    if(size === false){
+      scrollo.current?.scrollIntoView({behavior: "smooth", block: "end"})
+    }
+
   }
 
   const toggleInch = () => {
