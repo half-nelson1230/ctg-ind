@@ -2,7 +2,7 @@
   prepareVariantsWithOptions()
   This function changes the structure of the variants to
   more easily get at their options. The original data
-  structure looks like this:
+  structure looks l ike this:
   {
     "shopifyId": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMTc4NDQ4MTAzMDE4OA==",
     "selectedOptions": [
@@ -21,7 +21,7 @@
     "shopifyId": "Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zMTc4NDQ4MTAzMDE4OA==",
     "color": "Red",
     "size": "Small"
-    
+
   },
 */
 
