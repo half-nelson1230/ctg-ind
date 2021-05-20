@@ -10,20 +10,11 @@ import Draggable from 'react-draggable'; // The default
 
 //styled
 const Container = styled.div`
-position: fixed;
-bottom: var(--Margin);
-left: var(--Margin);
+
 background-color: #fff;
-border: 2px solid;
-width: 240px;
 padding: 30px;
 text-align: center;
 font-family: eurostile;
-z-index: 2;
-
-:hover{
-  cursor: move;
-}
 
 h2{
   font-weight: 800;
@@ -33,6 +24,11 @@ h2{
 p{
   font-weight: 300;
   font-size: 18px;
+  margin-bottom: 18px;
+
+  &.break{
+    line-break: anywhere;
+  }
 }
 
 h3{
@@ -111,8 +107,7 @@ const Signup = (props) =>{
 
 
   useEffect(() => {
-    setCloseTemp(sessionStorage.getItem('tempClose'))
-    setStoreClose(localStorage.getItem('closed'))
+    setStoreClose(localStorage.getItem('closedShorts'))
   }, [])
 
   console.log(closeTemp);
@@ -120,7 +115,7 @@ const Signup = (props) =>{
   const handleSubmit = async (e) => {
     e.preventDefault()
     const result = await addToMailchimp(email, {
-      FROM: 'homepage'
+      FROM: 'shorts page'
     })
     checkResult({result: result})
     }
@@ -143,53 +138,54 @@ const Signup = (props) =>{
 
   if(peepResult === 'success'){
     setTimeout(() => {checkClosed(true)}, 2000);
-    setTimeout(() => {localStorage.setItem('closed', true)}, 2000) ;
+    setTimeout(() => {localStorage.setItem('closedShorts', true)}, 1000) ;
   }
 
   return(
     <>
-    {storeClose ? null :
-    <>
-    {closeTemp ? null :
-      <>
-      {hideform ? null :
-        <>
-        {closeBox ? null :
-        <form onSubmit={handleSubmit} className={`form ${hideform}`}>
-        <Draggable>
-        <Container className="">
-        <>
-        <h2>{props.title}</h2>
-        {peepResult === 'success' ? <RichText render={props.successText}/>
-        : peepResult === 'error' ? <p>{resultMessage}</p>
-        :
-        <RichText render={props.text}/>
-        }
-        <h3>{props.emailText}</h3>
-           <input
-           className={'box'}
-           type="text"
-           value={email}
-           onChange={handleChange}
-           />
-       <button className={'box'}  type="submit">{props.submitText}</button>
-       </>
-        <Close onClick={clickBox}>X</Close>
-        </Container>
-        </Draggable>
-        </form>
-        }
-        </>
-      }
-      </>}
-    </>}
+    <form onSubmit={handleSubmit} className={`form ${hideform}`}>
 
+    <Container className="">
+    <>
+    <h2>Coming Soon</h2>
+    {peepResult === 'success' ? <RichText render={props.successText}/>
+    : peepResult === 'error' ? <p className="break">{resultMessage}</p>
+    :
+    <>
+    {storeClose ? <p>Thanks for joining our mailing list! We'll let you know when our shorts are in stock.</p> : <p>Sign up for our mailing list and be the first to know when our shorts are in stock.</p>}
+    </>
+    }
+    {closeBox ?
+      null
+      :
+      <>
+      {storeClose ?
+          null :
+          <>
+          <h3>{props.emailText}</h3>
+             <input
+             className={'box'}
+             type="text"
+             value={email}
+             onChange={handleChange}
+             />
+         <button className={'box'}  type="submit">{props.submitText}</button>
+         </>
+      }
+      </>
+    }
+
+
+   </>
+    </Container>
+
+    </form>
 
     </>
   )
 }
 export const query = graphql`
-query EmailQuery {
+query EmailQuery2 {
   allPrismicEmailSignup {
     edges {
       node {

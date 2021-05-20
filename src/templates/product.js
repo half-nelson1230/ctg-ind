@@ -11,6 +11,7 @@ import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './uti
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
+import Signup from '../components/layout/popup2.js'
 
 const Clear = styled.div``
 
@@ -25,6 +26,7 @@ const ProductTemplate = ({ data }) => {
     const allproduct=data.allShopifyProduct
     const diagram=data.allPrismicProductDiagrams
     const diagramSlice = data.allPrismicProductDiagramsBodySize
+    const emaildoc = data.allPrismicEmailSignup.edges[0].node.data
 
 
     const productList = data.allShopifyProduct.edges.map(({node}) =>
@@ -79,8 +81,22 @@ const ProductTemplate = ({ data }) => {
         testo={product.title}
       />
       <div className='outliner' >
-        <h3>${product.variants[0].price}</h3>
-       <ProductForm product={product} />
+      {product.title === "SH_01" ?
+      <>
+      <Signup
+        title={emaildoc.title}
+        text={emaildoc.default_text.raw}
+        successText={emaildoc.success_text.raw}
+        emailText={emaildoc.email_field}
+        submitText={emaildoc.submit_text}
+      />
+      </>
+
+       :
+
+       <><h3>${product.variants[0].price}</h3>
+        <ProductForm product={product} /></>}
+
       </div>
       </Info>
 
@@ -167,6 +183,23 @@ export const query = graphql`
       images {
         originalSrc
         id
+      }
+    }
+    allPrismicEmailSignup {
+      edges {
+        node {
+          data {
+            default_text {
+             raw
+           }
+           success_text {
+             raw
+           }
+           email_field
+           submit_text
+           title
+          }
+        }
       }
     }
   }
