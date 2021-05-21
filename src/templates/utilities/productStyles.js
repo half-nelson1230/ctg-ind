@@ -153,3 +153,21 @@ border: none;
   cursor: pointer;
 }
 `
+
+export const Vc = styled.div`
+padding: 5px;
+margin-top: calc(var(--Margin)/2);
+outline: 2px solid;
+font-family: eurostile;
+font-weight: 800;
+background: #fff;
+border: none;
+font-size: 13.333px;
+text-align: center;
+:hover{
+  background-color: #000;
+  color: #fff;
+  outline-color: #000 !important;
+  cursor: pointer;
+}
+`

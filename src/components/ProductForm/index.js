@@ -2,9 +2,11 @@ import React, { useState, useContext, useEffect, useCallback } from 'react'
 import find from 'lodash/find'
 import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
-import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from '~/templates/utilities/productStyles'
-
+import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc, Vc} from '~/templates/utilities/productStyles'
+import {Link} from 'gatsby'
 import StoreContext from '../../context/StoreContext'
+
+
 
 const ProductForm = ({ product }) => {
   const {
@@ -89,7 +91,6 @@ const ProductForm = ({ product }) => {
     if (match.availableForSale === true) return false
     return true
   }
-
   const price = Intl.NumberFormat(undefined, {
     currency: minVariantPrice.currencyCode,
     minimumFractionDigits: 2,
@@ -127,7 +128,8 @@ const ProductForm = ({ product }) => {
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
-Add To Cart      </Atc>
+      {product.title === 'SH_01' ? 'Preorder' : 'Add To Cart'}       </Atc>
+      <Vc><Link to="/cart">view cart</Link></Vc>
       {!available && <p>This Product is out of Stock!</p>}
     </>
   )

@@ -81,21 +81,8 @@ const ProductTemplate = ({ data }) => {
         testo={product.title}
       />
       <div className='outliner' >
-      {product.title === "SH_01" ?
-      <>
-      <Signup
-        title={emaildoc.title}
-        text={emaildoc.default_text.raw}
-        successText={emaildoc.success_text.raw}
-        emailText={emaildoc.email_field}
-        submitText={emaildoc.submit_text}
-      />
-      </>
-
-       :
-
-       <><h3>${product.variants[0].price}</h3>
-        <ProductForm product={product} /></>}
+      <h3>${product.variants[0].price}</h3>
+       <ProductForm product={product} />
 
       </div>
       </Info>
