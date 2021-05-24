@@ -7,6 +7,7 @@ width: 50%;
 @media(max-width: 750px){
   width: 100%;
   height: auto;
+  object-fit: cover;
 }
 `
 
