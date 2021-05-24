@@ -3,7 +3,7 @@ import Layout from '~/components/layout'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
-
+ 
 import aboutImg from '~/images/Links/snow-peak-fall-winter-2019-lookbook-collection-12.jpg'
 
 const Main = styled.div`
