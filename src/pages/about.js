@@ -3,7 +3,7 @@ import Layout from '~/components/layout'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
- 
+
 import aboutImg from '~/images/Links/snow-peak-fall-winter-2019-lookbook-collection-12.jpg'
 
 const Main = styled.div`
@@ -115,6 +115,8 @@ outline: 2px solid;
 object-fit: cover;
 object-position: top;
 min-height: 100%;
+height: auto;
+align-self: center;
 @media(max-width: 1200px){
     grid-column: span 4;
     max-height: 600px;
