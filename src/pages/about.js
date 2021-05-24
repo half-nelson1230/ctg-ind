@@ -118,10 +118,10 @@ min-height: 100%;
 align-self: center;
 @media(max-width: 1200px){
     grid-column: span 4;
-    max-height: 600px;
+    max-height: 100%;
     min-height: none !important;
     height: inherit !important;
-
+    display: block;
 }
 
 `
