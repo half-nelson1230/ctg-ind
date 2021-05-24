@@ -121,12 +121,13 @@ z-index: 12;
 export const Select = styled.select`
 width: 100%;
 padding: 10px;
-outline: 2px solid;
+border: 2px solid;
 margin-top: var(--Margin);
 font-family: eurostile;
 font-weight: 800;
 -webkit-appearance: none;
-
+outline: none;
+background: none;
 option{
   font-family: eurostile;
   font-weight: 800;
