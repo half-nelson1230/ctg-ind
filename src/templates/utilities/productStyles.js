@@ -123,6 +123,7 @@ width: 100%;
 padding: 10px;
 border: 2px solid;
 outline-radius: 0;
+border-radius: 0;
 margin-top: var(--Margin);
 font-family: eurostile;
 font-weight: 800;
