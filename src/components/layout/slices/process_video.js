@@ -8,6 +8,7 @@ const VideoBlock = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns: repeat(4, 1fr);
+min-height: 420px;
 
 
 @media(max-width: 1200px){
@@ -31,6 +32,7 @@ outline: 2px solid;
 padding: 30px;
 font-family: eurostile;
 
+
 h3{
   margin: 0;
   font-weight: 800;
@@ -40,6 +42,7 @@ h3{
 }
 p{
   margin: 0;
+
 
 }
 
@@ -103,8 +106,8 @@ export default function ProcessVideo({ slice }) {
   const vid = slice.primary.video_link.embed_url;
 return(
   <VideoBlock>
-  <Text>
-    <RichText render={slice.primary.text.raw}/>
+  <Text className="underline">
+    <RichText  render={slice.primary.text.raw}/>
   </Text>
   <Video className={show && 'videxpand'} >
 {/*

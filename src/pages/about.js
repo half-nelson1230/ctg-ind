@@ -131,11 +131,11 @@ const About = ({ data }) => {
   return(
 
     <Main>
-    <Text>
+    <Text className="underline">
     <RichText render={document.about.raw}/>
 
     </Text>
-    <Text>
+    <Text className="underline">
       <RichText render={document.priorities.raw}/>
     </Text>
     <AboutImg src={document.image.url}/>

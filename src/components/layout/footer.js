@@ -10,6 +10,16 @@ display: flex;
 margin: var(--Margin);
 background-color: #fff;
 
+button{
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: eurostile;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+}
+
 &.yes{
   position: absolute;
   bottom: 0;
@@ -113,6 +123,12 @@ const Footer = (props) => {
                 </ul>
                 </Block>
               ))}
+              <Block>
+              <h3>Newsletter</h3>
+              <ul>
+                <button onClick={props.popup}><li>Subscribe to our Newsletter</li></button>
+              </ul>
+              </Block>
 
           </>
         )}

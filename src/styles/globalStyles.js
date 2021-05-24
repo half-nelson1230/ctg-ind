@@ -28,6 +28,8 @@ html {
 a{
   text-decoration: none;
   color: inherit;
+
+
 }
 
 body{
@@ -119,6 +121,12 @@ button{
 
 .videxpand{
   padding-bottom: 56.25%;
+}
+
+.underline{
+a{
+    text-decoration: underline !important;
+  }
 }
 `
 
