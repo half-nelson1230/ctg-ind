@@ -115,12 +115,13 @@ outline: 2px solid;
 object-fit: cover;
 object-position: top;
 min-height: 100%;
-height: auto;
 align-self: center;
 @media(max-width: 1200px){
     grid-column: span 4;
     max-height: 600px;
     min-height: none !important;
+    height: inherit !important;
+
 }
 
 `
