@@ -174,7 +174,7 @@ const Signup = (props) =>{
            />
        <button className={'box'}  type="submit">{props.submitText}</button>
        </>
-        <Close onClick={clickBox}>X</Close>
+        <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
         </Container>
         </Draggable>
         </form>
