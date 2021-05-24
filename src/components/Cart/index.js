@@ -43,7 +43,10 @@ z-index: 14;
 
 
 const Items = styled.div`
-
+img{
+  height: 100%;
+  align-self: center;
+}
 `
 
 const Price = styled.div`
