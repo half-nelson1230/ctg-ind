@@ -14,7 +14,6 @@ import {
 
 
 
-
 //styled
 const Container = styled.div`
 position: fixed;
@@ -153,60 +152,6 @@ const Signup = (props) =>{
     setTimeout(() => {localStorage.setItem('closed', true)}, 2000) ;
   }
 
-  const PopUpSwitch = () => {
-    if(isBrowser){
-      return(
-        <Draggable>
-        <Container className="">
-        <>
-        <h2>{props.title}</h2>
-        {peepResult === 'success' ? <RichText render={props.successText}/>
-        : peepResult === 'error' ? <p>{resultMessage}</p>
-        :
-        <RichText render={props.text}/>
-        }
-        <h3>{props.emailText}</h3>
-           <input
-           className={'box'}
-           type="text"
-           value={email}
-           onChange={handleChange}
-           />
-       <button className={'box'}  type="submit">{props.submitText}</button>
-       </>
-        <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
-        </Container>
-        </Draggable>
-      )
-    }
-
-    if(isMobile){
-      return(
-
-        <Container className="">
-        <>
-        <h2>{props.title}</h2>
-        {peepResult === 'success' ? <RichText render={props.successText}/>
-        : peepResult === 'error' ? <p>{resultMessage}</p>
-        :
-        <RichText render={props.text}/>
-        }
-        <h3>{props.emailText}</h3>
-           <input
-           className={'box'}
-           type="text"
-           value={email}
-           onChange={handleChange}
-           />
-       <button className={'box'}  type="submit">{props.submitText}</button>
-       </>
-        <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
-        </Container>
-
-      )
-    }
-  }
-
   return(
     <>
     {storeClose ? null :
@@ -217,7 +162,53 @@ const Signup = (props) =>{
         <>
         {closeBox ? null :
         <form onSubmit={handleSubmit} className={`form ${hideform}`}>
-        <PopUpSwitch/>
+        {isMobile ?
+
+          <Container className="">
+          <>
+          <h2>{props.title}</h2>
+          {peepResult === 'success' ? <RichText render={props.successText}/>
+          : peepResult === 'error' ? <p>{resultMessage}</p>
+          :
+          <RichText render={props.text}/>
+          }
+          <h3>{props.emailText}</h3>
+             <input
+             className={'box'}
+             type="text"
+             value={email}
+             onChange={handleChange}
+             />
+         <button className={'box'}  type="submit">{props.submitText}</button>
+         </>
+          <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
+          </Container>
+
+
+          :
+
+          <Draggable>
+          <Container className="">
+          <>
+          <h2>{props.title}</h2>
+          {peepResult === 'success' ? <RichText render={props.successText}/>
+          : peepResult === 'error' ? <p>{resultMessage}</p>
+          :
+          <RichText render={props.text}/>
+          }
+          <h3>{props.emailText}</h3>
+             <input
+             className={'box'}
+             type="text"
+             value={email}
+             onChange={handleChange}
+             />
+         <button className={'box'}  type="submit">{props.submitText}</button>
+         </>
+          <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
+          </Container>
+          </Draggable>
+        }
         </form>
         }
         </>

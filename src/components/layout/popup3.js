@@ -100,6 +100,7 @@ border-bottom: 2px solid;
 const Signup3 = (props) =>{
 
   const [closeBox, checkClosed] = useState(false);
+  const [closed, toggleClosed] = useState(false)
 
 
 
@@ -132,6 +133,7 @@ const Signup3 = (props) =>{
     checkEmail(e.target.value)
   }
 
+
   let peepResult;
   let resultMessage;
   let hideform;
@@ -148,9 +150,21 @@ const Signup3 = (props) =>{
     setTimeout(() => {checkClosed(true)}, 2000);
   }
 
-  const BrowserPop = () => {
-    if(isMobile) {
-      return(
+
+  const submitClose = () => {
+    if(peepResult === 'success'){
+      setTimeout(() => {checkClosed(true)}, 2000);
+    }
+  }
+
+
+
+  return(
+    <>
+    {closeBox ? null :
+
+      <form onSubmit={handleSubmit} className={`form ${hideform}`}>
+      {isMobile ?
 
         <Container className="">
         <>
@@ -167,16 +181,14 @@ const Signup3 = (props) =>{
            value={email}
            onChange={handleChange}
            />
-       <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
+       <button className={'box'} onClick={submitClose}  type="submit">{props.submitText}</button>
        </>
         <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
         </Container>
 
-      )
-    }
+        :
 
-    if(isBrowser){
-      return(
+
         <Draggable>
         <Container className="">
         <>
@@ -193,46 +205,18 @@ const Signup3 = (props) =>{
            value={email}
            onChange={handleChange}
            />
-       <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
+       <button className={'box'} onClick={submitClose}  type="submit">{props.submitText}</button>
        </>
         <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
         </Container>
         </Draggable>
-      )
+      }
+      </form>
+
     }
 
-  }
+    </>
 
-  const MobilePop = () => {
-    return(
-      <Draggable>
-      <Container className="">
-      <>
-      <h2>{props.title}</h2>
-      {peepResult === 'success' ? <RichText render={props.successText}/>
-      : peepResult === 'error' ? <p>{resultMessage}</p>
-      :
-      <RichText render={props.text}/>
-      }
-      <h3>{props.emailText}</h3>
-         <input
-         className={'box'}
-         type="text"
-         value={email}
-         onChange={handleChange}
-         />
-     <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
-     </>
-      <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
-      </Container>
-      </Draggable>
-    )
-  }
-
-  return(
-    <form onSubmit={handleSubmit} className={`form ${hideform}`}>
-    <BrowserPop/>
-    </form>
   )
 }
 export const query = graphql`
