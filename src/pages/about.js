@@ -19,6 +19,13 @@ margin-bottom: calc(var(--Margin) * -1);
 @media(max-width: 900px){
   grid-template-columns: repeat(4, 1fr);
 }
+
+@media(max-width: 500px){
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 a{
   &.active{
     div{
@@ -119,7 +126,7 @@ align-self: center;
 @media(max-width: 1200px){
     grid-column: span 4;
     max-height: 100%;
-    min-height: none !important;
+    min-height: auto !important;
     height: inherit !important;
     display: block;
 }
