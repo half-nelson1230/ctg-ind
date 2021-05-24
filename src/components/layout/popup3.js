@@ -5,7 +5,12 @@ import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import Draggable from 'react-draggable'; // The default
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
 
 
 //styled
@@ -143,29 +148,90 @@ const Signup3 = (props) =>{
     setTimeout(() => {checkClosed(true)}, 2000);
   }
 
+  const BrowserPop = () => {
+    if(isMobile) {
+      return(
+
+        <Container className="">
+        <>
+        <h2>{props.title}</h2>
+        {peepResult === 'success' ? <RichText render={props.successText}/>
+        : peepResult === 'error' ? <p>{resultMessage}</p>
+        :
+        <RichText render={props.text}/>
+        }
+        <h3>{props.emailText}</h3>
+           <input
+           className={'box'}
+           type="text"
+           value={email}
+           onChange={handleChange}
+           />
+       <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
+       </>
+        <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
+        </Container>
+
+      )
+    }
+
+    if(isBrowser){
+      return(
+        <Draggable>
+        <Container className="">
+        <>
+        <h2>{props.title}</h2>
+        {peepResult === 'success' ? <RichText render={props.successText}/>
+        : peepResult === 'error' ? <p>{resultMessage}</p>
+        :
+        <RichText render={props.text}/>
+        }
+        <h3>{props.emailText}</h3>
+           <input
+           className={'box'}
+           type="text"
+           value={email}
+           onChange={handleChange}
+           />
+       <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
+       </>
+        <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
+        </Container>
+        </Draggable>
+      )
+    }
+
+  }
+
+  const MobilePop = () => {
+    return(
+      <Draggable>
+      <Container className="">
+      <>
+      <h2>{props.title}</h2>
+      {peepResult === 'success' ? <RichText render={props.successText}/>
+      : peepResult === 'error' ? <p>{resultMessage}</p>
+      :
+      <RichText render={props.text}/>
+      }
+      <h3>{props.emailText}</h3>
+         <input
+         className={'box'}
+         type="text"
+         value={email}
+         onChange={handleChange}
+         />
+     <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
+     </>
+      <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
+      </Container>
+      </Draggable>
+    )
+  }
+
   return(
     <form onSubmit={handleSubmit} className={`form ${hideform}`}>
-    <Draggable>
-    <Container className="">
-    <>
-    <h2>{props.title}</h2>
-    {peepResult === 'success' ? <RichText render={props.successText}/>
-    : peepResult === 'error' ? <p>{resultMessage}</p>
-    :
-    <RichText render={props.text}/>
-    }
-    <h3>{props.emailText}</h3>
-       <input
-       className={'box'}
-       type="text"
-       value={email}
-       onChange={handleChange}
-       />
-   <button className={'box'} onClick={props.submitter}  type="submit">{props.submitText}</button>
-   </>
-    <Close onClick={props.closer} onTouchStart={props.closer}>X</Close>
-    </Container>
-    </Draggable>
+    <BrowserPop/>
     </form>
   )
 }

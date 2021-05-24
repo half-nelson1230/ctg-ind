@@ -5,6 +5,13 @@ import { graphql } from 'gatsby'
 import { RichText } from 'prismic-reactjs';
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import Draggable from 'react-draggable'; // The default
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile
+} from "react-device-detect";
+
 
 
 
@@ -146,16 +153,9 @@ const Signup = (props) =>{
     setTimeout(() => {localStorage.setItem('closed', true)}, 2000) ;
   }
 
-  return(
-    <>
-    {storeClose ? null :
-    <>
-    {closeTemp ? null :
-      <>
-      {hideform ? null :
-        <>
-        {closeBox ? null :
-        <form onSubmit={handleSubmit} className={`form ${hideform}`}>
+  const PopUpSwitch = () => {
+    if(isBrowser){
+      return(
         <Draggable>
         <Container className="">
         <>
@@ -177,6 +177,47 @@ const Signup = (props) =>{
         <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
         </Container>
         </Draggable>
+      )
+    }
+
+    if(isMobile){
+      return(
+
+        <Container className="">
+        <>
+        <h2>{props.title}</h2>
+        {peepResult === 'success' ? <RichText render={props.successText}/>
+        : peepResult === 'error' ? <p>{resultMessage}</p>
+        :
+        <RichText render={props.text}/>
+        }
+        <h3>{props.emailText}</h3>
+           <input
+           className={'box'}
+           type="text"
+           value={email}
+           onChange={handleChange}
+           />
+       <button className={'box'}  type="submit">{props.submitText}</button>
+       </>
+        <Close onClick={clickBox} onTouchStart={clickBox}>X</Close>
+        </Container>
+
+      )
+    }
+  }
+
+  return(
+    <>
+    {storeClose ? null :
+    <>
+    {closeTemp ? null :
+      <>
+      {hideform ? null :
+        <>
+        {closeBox ? null :
+        <form onSubmit={handleSubmit} className={`form ${hideform}`}>
+        <PopUpSwitch/>
         </form>
         }
         </>
