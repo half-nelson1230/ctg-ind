@@ -125,6 +125,8 @@ outline: 2px solid;
 margin-top: var(--Margin);
 font-family: eurostile;
 font-weight: 800;
+-webkit-appearance: none;
+
 option{
   font-family: eurostile;
   font-weight: 800;
@@ -132,7 +134,7 @@ option{
 
 option:disabled::after{
 
-    content: 'beep';
+    content: ' - out of stock';
 
 }
 `
