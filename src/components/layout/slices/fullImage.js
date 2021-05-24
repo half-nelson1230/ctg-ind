@@ -3,7 +3,8 @@ import styled from 'styled-components'
 
 const Image =styled.img`
 width: 100%;
-height: fit-content;
+height: inherit !important;
+align-self: center;
 object-fit: cover;
 `
 

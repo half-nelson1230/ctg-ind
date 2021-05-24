@@ -6,8 +6,10 @@ display: block;
 width: 50%;
 @media(max-width: 750px){
   width: 100%;
-  height: fit-content;
+  height: inherit !important;
   object-fit: cover;
+  align-self: center;
+
 }
 `
 
