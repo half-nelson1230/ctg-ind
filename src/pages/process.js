@@ -13,7 +13,6 @@ import secondImage from "~/images/Links/WPD_09.jpg"
 const Main = styled.div`
 width: calc(100% - var(--Margin)*2);
 display: grid;
-min-height: 350px;
 margin: 0 var(--Margin);
 margin-bottom: calc(var(--Margin) * -1);
 a{

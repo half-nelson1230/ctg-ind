@@ -43,7 +43,6 @@
     "querystringify": "^2.2.0",
     "raf": "^3.4.1",
     "react": "^17.0.1",
-    "react-device-detect": "^1.17.0",
     "react-dom": "^17.0.1",
     "react-draggable": "^4.4.3",
     "react-helmet": "^6.1.0",
