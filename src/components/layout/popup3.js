@@ -11,7 +11,7 @@ import {
   isBrowser,
   isMobile
 } from "react-device-detect";
- 
+  
 
 //styled
 const Container = styled.div`
