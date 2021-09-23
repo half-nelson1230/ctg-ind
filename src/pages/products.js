@@ -238,17 +238,19 @@ const ProductPage = ({ data }) => {
         null
         :
         <Labels>
-        {productList[2]}
         {productList[0]}
+        {productList[3]}
         {productList[1]}
+        {productList[2]}
         </Labels>
 
       }
 
       <Products>
-      {productPics[2]}
       {productPics[0]}
+      {productPics[3]}
       {productPics[1]}
+      {productPics[2]}
       </Products>
     </Main>
 
