@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import Layout from "~/components/layout"
 import GlobalStyle from '../styles/globalStyles.js'
 import { useBreakpoint } from 'gatsby-plugin-breakpoints';
@@ -12,6 +12,7 @@ import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
 import Signup from '../components/layout/popup2.js'
+
 
 const Clear = styled.div``
 
@@ -54,9 +55,10 @@ const ProductTemplate = ({ data }) => {
       <MainFixed>
 
       {breakpoints.sm ? null : <LabelsFixed>
-        {productList[2]}
         {productList[0]}
+        {productList[3]}
         {productList[1]}
+        {productList[2]}
       </LabelsFixed>}
 
 
@@ -66,6 +68,7 @@ const ProductTemplate = ({ data }) => {
         {product.images.map(pic => (
           <img src={pic.originalSrc}/>
         ))}
+
       </PicHold>
 
       <Info>
