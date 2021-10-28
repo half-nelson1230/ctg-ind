@@ -17,6 +17,11 @@ img{
   width: 100%;
   outline: 2px solid;
 }
+
+canvas{
+  width: 100%;
+  position: relative;
+}
 `
 
 export const MainFixed=styled(Main)`
@@ -174,4 +179,12 @@ text-align: center;
   outline-color: #000 !important;
   cursor: pointer;
 }
+`
+
+export const ThreeDModel = styled.div`
+div{
+&.container{
+width: 100% !important;
+height: 500px !important;
+}}
 `

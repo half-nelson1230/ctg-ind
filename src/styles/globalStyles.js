@@ -100,6 +100,8 @@ button{
   }
 }
 
+
+
 .activeCart{
   div{
   background-color: #000;
@@ -128,6 +130,16 @@ a{
     text-decoration: underline !important;
   }
 }
+
+.threeD{
+  div{
+  width: 100%;
+  height: 500px !important;
+  }
+}
+
 `
+
+
 
 export default GlobalStyle

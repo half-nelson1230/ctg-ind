@@ -7,14 +7,18 @@ import styled from 'styled-components'
 import Footer from '../components/layout/footer.js'
 import Client from 'shopify-buy'
 import ProductForm from '../components/ProductForm/index'
-import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc} from './utilities/productStyles'
+import { MainFixed, LabelsFixed, PicHold, Spacer, Info, Select, Atc, ThreeDModel} from './utilities/productStyles'
 import {Labels, Label} from '~/pages/products'
 import Helmet from 'react-helmet'
 import Diagrams from '~/components/layout/diagram'
 import Signup from '../components/layout/popup2.js'
+import ScriptTag from 'react-script-tag';
 
 
 const Clear = styled.div``
+
+
+
 
 const ProductTemplate = ({ data }) => {
     const breakpoints = useBreakpoint();
@@ -28,7 +32,6 @@ const ProductTemplate = ({ data }) => {
     const diagram=data.allPrismicProductDiagrams
     const diagramSlice = data.allPrismicProductDiagramsBodySize
     const emaildoc = data.allPrismicEmailSignup.edges[0].node.data
-
 
     const productList = data.allShopifyProduct.edges.map(({node}) =>
     <Link to={`/products/${node.handle}`} >
@@ -44,6 +47,19 @@ const ProductTemplate = ({ data }) => {
     </Label>
     </Link>
     )
+
+    let modelSwitch
+    let hasModel
+    console.log(product.title)
+    if(product.title === "TS_01"){
+      modelSwitch = "https://storage.googleapis.com/titanpointe/thirdaxis/CTG/CTG_IND_SHIRT_1018_1731.glb"
+      hasModel = true;
+    }else if(product.title === "SH_01"){
+      modelSwitch = "https://storage.googleapis.com/titanpointe/thirdaxis/CTG/CTG_IND_SHORTS_draco_1008_1800.glb"
+      hasModel = true;
+    }else{
+      hasModel = false
+    }
 
   return (
   <>
@@ -62,13 +78,23 @@ const ProductTemplate = ({ data }) => {
       </LabelsFixed>}
 
 
-
       <PicHold>
               <Spacer/>
+              <ScriptTag type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></ScriptTag>
+
         {product.images.map(pic => (
           <img src={pic.originalSrc}/>
         ))}
 
+        {hasModel ?
+        <ThreeDModel className='outliner'>
+        <model-viewer
+      seamless-poster camera-orbit="108.5deg 93.4deg auto" style={{height: 500, width: 100 + "%", 'outline': '2px solid'}}  src={modelSwitch} ar ar-modes="webxr scene-viewer quick-look" camera-controls></model-viewer>
+        </ThreeDModel>
+        :
+
+        null
+        }
       </PicHold>
 
       <Info>
