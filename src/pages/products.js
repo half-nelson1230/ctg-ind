@@ -8,6 +8,7 @@ import ContextProvider from '~/provider/ContextProvider'
 import ProductLabels from '~/components/layout/productLabels'
 import Layout from '~/components/layout'
 
+import walnutpic from '~/images/TS_01_BW_S_Front_R02.gif'
 
 //styled components
 const Container = styled.div`
@@ -183,11 +184,14 @@ const ProductPage = ({ data }) => {
 
   const productPics = data.allShopifyProduct.edges.map(({ node }) => {
     const productPicList = node.images.map(pic => pic.originalSrc)
+    const bgImg = productPicList[0]
+    let checkAnimation = node.tags.includes('animation')
+    console.log(checkAnimation)
       return(
         <Link to={`/products/${node.handle}`}>
         <ImageDiv
         background={productPicList[0]}
-        bgAlt={productPicList[1]}
+        bgAlt={checkAnimation ? productPicList[0] : productPicList[1]}
         className={whatIndex === node.shopifyId ? 'testLink' : ''}
         onMouseEnter={() => setIndex(node.shopifyId)}
         onMouseLeave={() => setIndex(0)}
@@ -242,6 +246,7 @@ const ProductPage = ({ data }) => {
         {productList[3]}
         {productList[1]}
         {productList[2]}
+        {productList[4] ? productList[4] : null}
         </Labels>
 
       }
@@ -251,6 +256,7 @@ const ProductPage = ({ data }) => {
       {productPics[3]}
       {productPics[1]}
       {productPics[2]}
+      {productPics[4] ? productPics[4] : null}
       </Products>
     </Main>
 
@@ -269,6 +275,7 @@ export const query = graphql`
       edges {
         node {
           title
+          tags
           productType
           images {
             id
