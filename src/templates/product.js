@@ -51,10 +51,15 @@ const ProductTemplate = ({ data }) => {
     let modelSwitch
     let hasModel
     console.log(product.title)
-    if(product.title === "TS_01"){
+    const checkShirtModel = product.tags.includes('shirt_model')
+    const checkShortsModel = product.tags.includes('shorts_model')
+    console.log('shirt model' + checkShirtModel)
+    console.log('shorts model' + checkShortsModel)
+
+    if(checkShirtModel === true){
       modelSwitch = "https://storage.googleapis.com/titanpointe/thirdaxis/CTG/CTG_IND_SHIRT_1018_1731.glb"
       hasModel = true;
-    }else if(product.title === "SH_01"){
+    }else if(checkShortsModel === true){
       modelSwitch = "https://storage.googleapis.com/titanpointe/thirdaxis/CTG/CTG_IND_SHORTS_draco_1008_1800.glb"
       hasModel = true;
     }else{
@@ -75,6 +80,7 @@ const ProductTemplate = ({ data }) => {
         {productList[3]}
         {productList[1]}
         {productList[2]}
+        {productList[4] ? productList[4] : null}
       </LabelsFixed>}
 
 
@@ -165,6 +171,7 @@ export const query = graphql`
     shopifyProduct(handle: { eq: $handle }) {
       id
       title
+      tags
       handle
       productType
       description
