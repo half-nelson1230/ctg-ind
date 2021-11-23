@@ -186,7 +186,6 @@ const ProductPage = ({ data }) => {
     const productPicList = node.images.map(pic => pic.originalSrc)
     const bgImg = productPicList[0]
     let checkAnimation = node.tags.includes('animation')
-    console.log(checkAnimation)
       return(
         <Link to={`/products/${node.handle}`}>
         <ImageDiv
@@ -232,6 +231,8 @@ const ProductPage = ({ data }) => {
   </Link>
 )
 
+console.log(data.allShopifyProduct.edges)
+
   return(
 
     <Parent>
@@ -242,21 +243,21 @@ const ProductPage = ({ data }) => {
         null
         :
         <Labels>
-        {productList[0]}
         {productList[3]}
+        {productList[0]}
+        {productList[4]}
         {productList[1]}
-        {productList[2]}
-        {productList[4] ? productList[4] : null}
+        {productList[4] ? productList[2] : null}
         </Labels>
 
       }
 
       <Products>
-      {productPics[0]}
       {productPics[3]}
+      {productPics[0]}
+      {productPics[4]}
       {productPics[1]}
-      {productPics[2]}
-      {productPics[4] ? productPics[4] : null}
+      {productPics[4] ? productPics[2] : null}
       </Products>
     </Main>
 

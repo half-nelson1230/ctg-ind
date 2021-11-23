@@ -76,11 +76,11 @@ const ProductTemplate = ({ data }) => {
       <MainFixed>
 
       {breakpoints.sm ? null : <LabelsFixed>
-        {productList[0]}
         {productList[3]}
+        {productList[0]}
+        {productList[4]}
         {productList[1]}
-        {productList[2]}
-        {productList[4] ? productList[4] : null}
+        {productList[4] ? productList[2] : null}
       </LabelsFixed>}
 
 
