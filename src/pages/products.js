@@ -243,21 +243,21 @@ console.log(data.allShopifyProduct.edges)
         null
         :
         <Labels>
-        {productList[3]}
+        {productList[1]}
         {productList[0]}
         {productList[4]}
-        {productList[1]}
-        {productList[4] ? productList[2] : null}
+        {productList[2]}
+        {productList[4] ? productList[3] : null}
         </Labels>
 
       }
 
       <Products>
-      {productPics[3]}
+      {productPics[1]}
       {productPics[0]}
       {productPics[4]}
-      {productPics[1]}
-      {productPics[4] ? productPics[2] : null}
+      {productPics[2]}
+      {productPics[4] ? productPics[3] : null}
       </Products>
     </Main>
 
@@ -272,7 +272,7 @@ export default ProductPage
 
 export const query = graphql`
   {
-    allShopifyProduct(sort: { fields: [title] }) {
+    allShopifyProduct(sort: { fields: [productType] }) {
       edges {
         node {
           title

@@ -76,11 +76,11 @@ const ProductTemplate = ({ data }) => {
       <MainFixed>
 
       {breakpoints.sm ? null : <LabelsFixed>
-        {productList[3]}
+        {productList[1]}
         {productList[0]}
         {productList[4]}
-        {productList[1]}
-        {productList[4] ? productList[2] : null}
+        {productList[2]}
+        {productList[4] ? productList[3] : null}
       </LabelsFixed>}
 
 
@@ -157,7 +157,7 @@ export const query = graphql`
    }
  }
 
-    allShopifyProduct(sort: { fields: [title] }) {
+    allShopifyProduct(sort: { fields: [productType] }) {
   edges {
     node {
       id
