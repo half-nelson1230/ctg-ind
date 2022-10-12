@@ -243,6 +243,7 @@ console.log(data.allShopifyProduct.edges)
         null
         :
         <Labels>
+        {productList[5]}
         {productList[1]}
         {productList[0]}
         {productList[4]}
@@ -253,6 +254,7 @@ console.log(data.allShopifyProduct.edges)
       }
 
       <Products>
+      {productPics[5]}
       {productPics[1]}
       {productPics[0]}
       {productPics[4]}
