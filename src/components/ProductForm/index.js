@@ -128,7 +128,7 @@ const ProductForm = ({ product }) => {
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
-      Add To Cart       </Atc>
+      {available ? 'Add to Cart' : 'Out of Stock'}       </Atc>
       <Vc><Link to="/cart">view cart</Link></Vc>
       {!available && <p>This Product is out of Stock!</p>}
     </>

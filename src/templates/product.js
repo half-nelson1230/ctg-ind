@@ -45,7 +45,10 @@ const ProductTemplate = ({ data }) => {
     <h3>{node.title}</h3>
     {breakpoints.md ?  null : <p>{node.productType}</p> }
     </Label>
+  {console.log(node, 'checky')}
     </Link>
+
+
     )
 
     let modelSwitch
@@ -76,11 +79,9 @@ const ProductTemplate = ({ data }) => {
       <MainFixed>
 
       {breakpoints.sm ? null : <LabelsFixed>
-        {productList[1]}
-        {productList[0]}
-        {productList[4]}
-        {productList[2]}
-        {productList[4] ? productList[3] : null}
+
+        {productList}
+
       </LabelsFixed>}
 
 
@@ -157,7 +158,7 @@ export const query = graphql`
    }
  }
 
-    allShopifyProduct(sort: { fields: [productType] }) {
+    allShopifyProduct(sort: { fields: [createdAt] order: DESC }) {
   edges {
     node {
       id
