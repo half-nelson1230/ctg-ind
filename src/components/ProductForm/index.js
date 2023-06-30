@@ -96,8 +96,18 @@ const ProductForm = ({ product }) => {
     minimumFractionDigits: 2,
     style: 'currency',
   }).format(variant.price)
+
+  let pants
+  if(product.handle == 'wp_01'){
+    pants = 'Pre-Order'
+  }else pants = 'Add to Cart'
+
   return (
+
+
     <>
+    <h2>{product.handle}</h2>
+    {console.log(product.handle)}
       {options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>
         {values.length > 1 &&
@@ -122,13 +132,15 @@ const ProductForm = ({ product }) => {
           </Select>}
         </React.Fragment>
       ))}
-
       <Atc
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
-      {available ? 'Add to Cart' : 'Out of Stock'}       </Atc>
+
+
+
+      {available ? pants : 'Out of Stock'}       </Atc>
       <Vc><Link to="/cart">view cart</Link></Vc>
       {!available && <p>This Product is out of Stock!</p>}
     </>
