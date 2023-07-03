@@ -106,7 +106,6 @@ const ProductForm = ({ product }) => {
 
 
     <>
-    <h2>{product.handle}</h2>
     {console.log(product.handle)}
       {options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>

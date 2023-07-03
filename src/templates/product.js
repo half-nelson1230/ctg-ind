@@ -158,7 +158,7 @@ export const query = graphql`
    }
  }
 
-    allShopifyProduct(sort: { fields: [createdAt] order: DESC }) {
+    allShopifyProduct(sort: { fields: [createdAt] }) {
   edges {
     node {
       id
